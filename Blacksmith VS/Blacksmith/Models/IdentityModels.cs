@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -11,6 +14,7 @@ namespace Blacksmith.Models
     // You can add User data for the user by adding more properties to your User class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class User : IdentityUser
     {
+
         public virtual ICollection<Link> Links { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
 
@@ -33,12 +37,34 @@ namespace Blacksmith.Models
         public ApplicationDbContext()
             : base("Blacksmith", throwIfV1Schema: false)
         {
+            // http://stackoverflow.com/questions/28531201/entitytype-identityuserlogin-has-no-key-defined-define-the-key-for-this-entit
+            // First answer, Option 2
+//            Database.SetInitializer<ApplicationDbContext>(null);
+//            Configuration.ProxyCreationEnabled = false;
+//            Configuration.LazyLoadingEnabled = false;
         }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Link> Links { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+
+//        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+//        {
+////            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+////            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+//
+//            modelBuilder.Entity<User>().ToTable("Users");
+//            modelBuilder.Entity<User>().HasKey(e => e.Id);
+//            modelBuilder.Entity<IdentityUserRole>().HasKey(e => new {e.RoleId, e.UserId});
+//            modelBuilder.Entity<IdentityUserLogin>().HasKey(e => e.UserId);
+//            //            modelBuilder.Entity<User>().Property(u => u.PasswordHash).HasMaxLength(500);
+//            //            modelBuilder.Entity<User>().Property(u => u.SecurityStamp).HasMaxLength(500);
+//            //            modelBuilder.Entity<User>().Property(u => u.PhoneNumber).HasMaxLength(50);
+//        }
     }
 }
 

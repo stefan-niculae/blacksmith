@@ -22,7 +22,7 @@ namespace Blacksmith
 
         public IQueryable<Link> GetRecentLinks2()
         {
-            return new LinkContext().Links;
+            return new ApplicationDbContext().Links;
         }
     }
 }

@@ -21,9 +21,8 @@ namespace Blacksmith.Models
         [StringLength(1000), DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
-//        [Required, ForeignKey("Submitter")]
-//        public string SubmitterId { get; set; }
-//    
+        [Required/*, ForeignKey("Submitter")*/]
+        public string SubmitterId { get; set; }
 //        public virtual User Submitter { get; set; }
 
         [Required, DataType(DataType.DateTime)]

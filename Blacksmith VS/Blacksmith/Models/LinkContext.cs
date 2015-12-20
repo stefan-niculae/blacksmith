@@ -37,7 +37,7 @@ namespace Blacksmith.Models
 //            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 //
 //            // Configure Asp Net Identity Tables
-//            modelBuilder.Entity<User>().ToTable("User");
+//            modelBuilder.Entity<User>().ToTable("Users");
 //            modelBuilder.Entity<User>().Property(u => u.PasswordHash).HasMaxLength(500);
 //            modelBuilder.Entity<User>().Property(u => u.SecurityStamp).HasMaxLength(500);
 //            modelBuilder.Entity<User>().Property(u => u.PhoneNumber).HasMaxLength(50);
@@ -57,7 +57,6 @@ namespace Blacksmith.Models
             
         }
 
-        public DbSet<Link> Links { get; set; }
-        public DbSet<Comment> Comments { get; set; }
+       
     }
 }

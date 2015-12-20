@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Web;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 
 namespace Blacksmith.Models
 {
-    public class LinksDatabaseInitializer : DropCreateDatabaseAlways<LinkContext>
+    public class LinksDatabaseInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
     {
-        protected override void Seed(LinkContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
 //            var stefan = new User
 //            {
@@ -27,7 +28,27 @@ namespace Blacksmith.Models
 //            manager.Create(stefan, "parolastefan1");
 //            manager.Create(ionut, "parolaionut2");
 
-
+            // http://blogs.msdn.com/b/webdev/archive/2013/10/20/building-a-simple-todo-application-with-asp-net-identity-and-associating-users-with-todoes.aspx?PageIndex=2
+//            var userManager = new UserManager<User>(new UserStore<User>(context));
+//            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+//
+//            string name = "Admin";
+//            string password = "123456";
+//
+//            if (!roleManager.RoleExists(name))
+//                roleManager.Create(new IdentityRole(name));
+//
+//            var user = new User();
+//            user.UserName = name;
+//            var adminResult = userManager.Create(user, password);
+//
+//            if (adminResult.Succeeded)
+//                userManager.AddToRole(user.Id, name);
+//
+//            base.Seed(context);
+//
+//
+//            var users = new List<User>();
             //            var users = new List<User>
             //            {
             //                new User
@@ -53,7 +74,7 @@ namespace Blacksmith.Models
                     Address = "google.dk",
                     Description = "Google Denmark",
                     Date = DateTime.Now,
-//                    SubmitterId = "idstefan",
+                    SubmitterId = "idstefan",
                 },
                 new Link
                 {
@@ -62,7 +83,7 @@ namespace Blacksmith.Models
                     Address = "amazon.it",
                     Description = "Amazon Italy",
                     Date = DateTime.Now.AddDays(-5),
-//                    SubmitterId = "idionut",
+                    SubmitterId = "idionut",
                 },
                 new Link
                 {
@@ -71,7 +92,7 @@ namespace Blacksmith.Models
                     Address = "ebay.ca",
                     Description = "Ebay Canada",
                     Date = DateTime.Now.AddDays(-10),
-//                    SubmitterId = "idstefan",
+                    SubmitterId = "idstefan",
                 },
             };
 
@@ -80,26 +101,26 @@ namespace Blacksmith.Models
                 new Comment
                 {
                     Id = 1,
-//                    LinkId = 1,
+                    LinkId = 1,
                     Link = links[0],
                     Content = "Best search engine!",
-//                    SubmitterId = "idstefan",
+                    SubmitterId = "idstefan",
                 },
                 new Comment
                 {
                     Id = 2,
-//                    LinkId = 1,
+                    LinkId = 1,
                     Link = links[0],
                     Content = "Why denmark link though?",
-//                    SubmitterId = "idionut",
+                    SubmitterId = "idionut",
                 },
                 new Comment
                 {
                     Id = 3,
-//                    LinkId = 2,
+                    LinkId = 2,
                     Link = links[1],
                     Content = "Amazon rocks!",
-//                    SubmitterId = "idstefan",
+                    SubmitterId = "idstefan",
                 },
             };
 
