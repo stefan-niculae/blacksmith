@@ -1,0 +1,18 @@
+﻿[
+  {
+    "outputFile": "Content/Style.css",
+    "inputFile": "Content/Style.scss"
+  },
+  {
+    "outputFile": "Scripts/Script.js",
+    "inputFile": "Scripts/Script.coffee"
+  },
+  {
+    "outputFile": "Scripts/AddUpdateDeleteLink.js",
+    "inputFile": "Scripts/AddUpdateDeleteLink.coffee"
+  },
+  {
+    "outputFile": "Scripts/Search.js",
+    "inputFile": "Scripts/Search.coffee"
+  }
+]

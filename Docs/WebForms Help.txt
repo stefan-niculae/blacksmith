@@ -1,0 +1,6 @@
+CRUD tutorial
+http://dotnetdaily.net/tutorials/ado-net-tutorial-create-update-delete-operations/
+
+SQL auto increment
+IDENTITY(from, increment). example:
+Id	INT	NOT NULL 	IDENTITY(0, 1)
