@@ -80,21 +80,24 @@ namespace Blacksmith.Models
                 new Comment
                 {
                     Id = 1,
-                    LinkId = 1,
+//                    LinkId = 1,
+                    Link = links[0],
                     Content = "Best search engine!",
 //                    SubmitterId = "idstefan",
                 },
                 new Comment
                 {
                     Id = 2,
-                    LinkId = 1,
+//                    LinkId = 1,
+                    Link = links[0],
                     Content = "Why denmark link though?",
 //                    SubmitterId = "idionut",
                 },
                 new Comment
                 {
                     Id = 3,
-                    LinkId = 2,
+//                    LinkId = 2,
+                    Link = links[1],
                     Content = "Amazon rocks!",
 //                    SubmitterId = "idstefan",
                 },

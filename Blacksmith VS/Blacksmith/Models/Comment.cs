@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Blacksmith.Models
 {
-    [Table("Comments")]
     public class Comment
     {
         [Key, ScaffoldColumn(false)]

@@ -1,6 +1,2 @@
-CRUD tutorial
-http://dotnetdaily.net/tutorials/ado-net-tutorial-create-update-delete-operations/
-
-SQL auto increment
-IDENTITY(from, increment). example:
-Id	INT	NOT NULL 	IDENTITY(0, 1)
+tutorial followed:
+https://www.asp.net/web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/create_the_data_access_layer

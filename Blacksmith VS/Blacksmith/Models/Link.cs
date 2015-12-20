@@ -7,7 +7,6 @@ using System.Data.SqlClient;
 
 namespace Blacksmith.Models
 {
-    [Table("Links")]
     public class Link
     {
         [Key, ScaffoldColumn(false)]

@@ -1,19 +1,32 @@
 Rename database from DefaultConnection to Blacksmith
+
 Make user only have username and password
 	modify registration
 	modify login
 	modify navbar to show username field, not email
-Change favicon
+
 Make col-*-offset-* work in submitted links (center them horizontally)
+
 if there is a timeout for updating the db, don't let the user leave the page
+
 validators for submitted links (length, trimming, regex for websites & whitespace/newlines)
+
 undo functionality for links (update pending -> cancel update and updated -> undo update)
+
 only allow unique website links (this includes an ajax call to retrieve the already existing names!)
+
 fix footer (not to overlap when there enough content)
+
 refresh favicon & address on the inserting link	
+
 when esc is pressed while editing a [contenteditable], restore to original and cancel pending upadte
+
 center .action-wrapper (without the width: 18% workaround!)
+
 ?when clicking a contenteditable, make it as big as the line permits (not just as big as the text)
+
 move submitted links & link adding to the user page
+
 also offset to the right change pw and logout
+
 make the database connection string go through the web.config variable in search.aspx, not be hardcoded
