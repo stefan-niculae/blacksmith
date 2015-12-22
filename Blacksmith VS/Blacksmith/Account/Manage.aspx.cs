@@ -61,6 +61,8 @@ namespace Blacksmith.Account
 
         public List<Link> SubmittedLinks()
         {
+            return new List<Link>();
+
             string userId = User.Identity.GetUserId();
             string query = "Select * from links " +
                            $"Where submitter = '{userId}'";

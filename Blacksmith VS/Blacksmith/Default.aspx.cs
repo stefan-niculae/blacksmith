@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web.UI;
 using Blacksmith.Models;
+using Blacksmith.Utilities;
 
 namespace Blacksmith
 {
@@ -12,7 +13,6 @@ namespace Blacksmith
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         public List<Link> GetRecentLinks()

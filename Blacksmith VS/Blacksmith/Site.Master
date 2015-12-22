@@ -58,7 +58,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" runat="server" href="~/" title="Home">
-            <img id="logo" src="Images/anvil-grey.png" alt="Logo"/>
+            <img id="logo" src="/Images/anvil-grey.png" alt="Logo"/>
             Blacksmith
           </a>
         </div>

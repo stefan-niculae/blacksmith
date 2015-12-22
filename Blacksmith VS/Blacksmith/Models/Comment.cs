@@ -12,9 +12,9 @@ namespace Blacksmith.Models
         [Required, StringLength(500), DataType(DataType.MultilineText)]
         public string Content { get; set; }
 
-        [Required/*, ForeignKey("Submitter")*/]
+        [Required, ForeignKey("Submitter")]
         public string SubmitterId { get; set; }
-//        public virtual User Submitter { get; set; }
+        public virtual User Submitter { get; set; }
         
         [Required, ForeignKey("Link")]
         public int LinkId { get; set; }

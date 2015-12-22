@@ -40,7 +40,7 @@ namespace Blacksmith.Models
             Title = title;
             Address = address;
             Description = description;
-//            SubmitterId = submitter;
+            SubmitterId = submitter;
             Date = date;
         }
 
@@ -49,7 +49,7 @@ namespace Blacksmith.Models
             Title = title;
             Address = address;
             Description = description;
-//            SubmitterId = submitter;
+            SubmitterId = submitter;
 
             Date = DateTime.Now;
         }
@@ -60,7 +60,7 @@ namespace Blacksmith.Models
             Title = (string) reader["Title"];
             Description = (string)reader["Description"];
             Address = (string) reader["Address"];
-//            SubmitterId = (string) reader["Submitter"];
+            SubmitterId = (string) reader["Submitter"];
             Date = (DateTime) reader["Date"];
         }
 
