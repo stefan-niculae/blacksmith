@@ -186,6 +186,9 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Images\anvil-grey.png" />
+    <Content Include="Images\anvil-transp-512.png" />
+    <Content Include="Images\favicon.ico" />
     <Content Include="Scripts\AddUpdateDeleteLink.js.map">
       <DependentUpon>AddUpdateDeleteLink.js</DependentUpon>
     </Content>
@@ -238,7 +241,6 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Default.aspx" />
-    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Search.aspx" />
     <Content Include="Site.Master" />

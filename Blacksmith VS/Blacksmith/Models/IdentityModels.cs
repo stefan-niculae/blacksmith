@@ -15,8 +15,8 @@ namespace Blacksmith.Models
     public class User : IdentityUser
     {
 
-        public virtual ICollection<Link> Links { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; }
+//        public virtual ICollection<Link> Links { get; set; }
+//        public virtual ICollection<Comment> Comments { get; set; }
 
         public ClaimsIdentity GenerateUserIdentity(ApplicationUserManager manager)
         {

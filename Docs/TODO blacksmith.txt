@@ -1,5 +1,3 @@
-Rename database from DefaultConnection to Blacksmith
-
 Make user only have username and password
 	modify registration
 	modify login

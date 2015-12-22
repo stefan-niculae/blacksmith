@@ -1,4 +1,14 @@
-﻿#creation, #submitted {
+﻿nav {
+  #logo {
+    height: 1.4em;
+    margin-right: 5px;
+    //margin-bottom: 5px;
+    margin-top: -6px;
+    // TODO maybe try mix-blend-mode to put an overlay
+  }
+}
+
+#creation, #submitted {
   margin: 75px 0;
   padding: 0;
   h3 {
