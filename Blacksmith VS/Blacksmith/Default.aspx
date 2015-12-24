@@ -20,7 +20,7 @@
 
           <ItemTemplate>
             <img src="<%#: Item.Favicon %>" alt="Favicon"/>
-            <%#: Item.Address %>
+            <%#: Item.Address %> by <%#: Item.Submitter.UserName %> (<%#: Item.Comments.Count %> comments)
             <%--<img src="<%#: Item.Thumbnail %>" alt="Thumbnail"/>--%>
             <br />
           </ItemTemplate>

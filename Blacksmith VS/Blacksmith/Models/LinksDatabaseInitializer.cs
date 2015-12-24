@@ -8,11 +8,10 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Blacksmith.Models
 {
-    public class LinksDatabaseInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
+    public class LinksDatabaseInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext context)
         {
-            DebugLogger.Log("beginning of seed");
             var stefan = new User
             {
                 Email = "stefan@email.com",
@@ -49,7 +48,7 @@ namespace Blacksmith.Models
                     Address = "google.dk",
                     Description = "Google Denmark",
                     Date = DateTime.Now,
-                    SubmitterId = stefan.Id,
+                    Submitter = stefan
                 },
                 new Link
                 {
@@ -58,7 +57,7 @@ namespace Blacksmith.Models
                     Address = "amazon.it",
                     Description = "Amazon Italy",
                     Date = DateTime.Now.AddDays(-5),
-                    SubmitterId = ionut.Id,
+                    Submitter = ionut
                 },
                 new Link
                 {
@@ -67,40 +66,37 @@ namespace Blacksmith.Models
                     Address = "ebay.ca",
                     Description = "Ebay Canada",
                     Date = DateTime.Now.AddDays(-10),
-                    SubmitterId = stefan.Id,
+                    Submitter = stefan
                 },
             };
-
+            for (int i = 0; i < links.Count; i++)
+                links[i] = context.Links.Add(links[i]);
+            
             var comments = new List<Comment>
             {
                 new Comment
                 {
                     Id = 1,
-                    LinkId = 1,
                     Link = links[0],
                     Content = "Best search engine!",
-                    SubmitterId = stefan.Id,
+                    Submitter = stefan
                 },
                 new Comment
                 {
                     Id = 2,
-                    LinkId = 1,
                     Link = links[0],
                     Content = "Why denmark link though?",
-                    SubmitterId = ionut.Id,
+                    Submitter = ionut
                 },
                 new Comment
                 {
                     Id = 3,
-                    LinkId = 2,
                     Link = links[1],
                     Content = "Amazon rocks!",
-                    SubmitterId = ionut.Id,
+                    Submitter = ionut
                 },
             };
-
-//            context.Users.AddRange(users);
-            context.Links.AddRange(links);
+            
             context.Comments.AddRange(comments);
         }
         

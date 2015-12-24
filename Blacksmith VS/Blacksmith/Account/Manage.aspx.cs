@@ -42,11 +42,11 @@ namespace Blacksmith.Account
 
             if (action == "Insert")
             {
-                LinkManager.Insert(new Link(
-                    Request.QueryString["title"],
-                    Request.QueryString["address"],
-                    Request.QueryString["description"],
-                    User.Identity.GetUserId()));
+//                LinkManager.Insert(new Link(
+//                    Request.QueryString["title"],
+//                    Request.QueryString["address"],
+//                    Request.QueryString["description"],
+//                    User.Identity.GetUserId()));
             }
             if (action == "Update")
             {

@@ -1,1 +1,1 @@
-22-Dec-15 14:43:05: beginning of seed
+24-Dec-15 14:54:41: link[0] = Blacksmith.Models.Link
