@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web.UI;
 using Blacksmith.Models;
-using Blacksmith.Utilities;
 
 namespace Blacksmith
 {
@@ -15,10 +11,10 @@ namespace Blacksmith
         {
         }
 
-        public List<Link> GetRecentLinks()
-        {
-            return LinkManager.ExecuteSelect("Select * From links Order By date Desc");
-        }
+//        public List<Link> GetRecentLinks()
+//        {
+//            return LinkManager.ExecuteSelect("Select * From links Order By date Desc");
+//        }
 
         public IQueryable<Link> GetRecentLinks2()
         {

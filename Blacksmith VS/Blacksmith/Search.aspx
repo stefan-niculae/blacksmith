@@ -28,15 +28,15 @@
     <i class="fa fa-comments"></i>
     <i class="fa fa-clock-o"></i>
   </section>
-  <table id="mata"></table>
-  <asp:SqlDataSource runat="server" ID="LinksDataSource"
-    SelectCommand="Select title From Links"
-    ConnectionString="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-Blacksmith-20151126125322.mdf;Initial Catalog=aspnet-Blacksmith-20151126125322;Integrated Security=True">    
-  </asp:SqlDataSource>
-
-  <asp:GridView ID="resultsGrid" runat="server"
-    DataSourceID="LinksDataSource" CssClass="results-grid">
-    
-  </asp:GridView>
+<%--  <table id="mata"></table>--%>
+<%--  <asp:SqlDataSource runat="server" ID="LinksDataSource"--%>
+<%--    SelectCommand="Select title From Links"--%>
+<%--    ConnectionString="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-Blacksmith-20151126125322.mdf;Initial Catalog=aspnet-Blacksmith-20151126125322;Integrated Security=True">    --%>
+<%--  </asp:SqlDataSource>--%>
+<%----%>
+<%--  <asp:GridView ID="resultsGrid" runat="server"--%>
+<%--    DataSourceID="LinksDataSource" CssClass="results-grid">--%>
+<%--    --%>
+<%--  </asp:GridView>--%>
 
 </asp:Content>

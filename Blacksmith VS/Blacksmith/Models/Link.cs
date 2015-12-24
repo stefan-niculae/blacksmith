@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
-using System.Data.SqlClient;
 
 namespace Blacksmith.Models
 {
@@ -26,8 +24,7 @@ namespace Blacksmith.Models
 
         [Required, DataType(DataType.DateTime)]
         public DateTime Date { get; set; }
-
-//        [ForeignKey("Id")]
+        
         public virtual ICollection<Comment> Comments { get; set; }
 
 

@@ -15,7 +15,7 @@ namespace Blacksmith
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            Database.SetInitializer(new LinksDatabaseInitializer());
+            Database.SetInitializer(new DatabaseInitializer());
         }
     }
 }
