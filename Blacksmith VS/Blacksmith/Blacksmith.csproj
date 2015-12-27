@@ -189,6 +189,7 @@
     <Content Include="Images\anvil-grey.png" />
     <Content Include="Images\anvil-transp-512.png" />
     <Content Include="Images\favicon.ico" />
+    <Content Include="Link.aspx" />
     <Content Include="Scripts\AddUpdateDeleteLink.js.map">
       <DependentUpon>AddUpdateDeleteLink.js</DependentUpon>
     </Content>
@@ -305,6 +306,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Link.aspx.cs">
+      <DependentUpon>Link.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Link.aspx.designer.cs">
+      <DependentUpon>Link.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Comment.cs" />

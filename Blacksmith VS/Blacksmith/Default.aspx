@@ -20,13 +20,20 @@
 
           <ItemTemplate>
             <img src="<%#: Item.Favicon %>" alt="Favicon"/>
-            <%#: Item.Address %> by <%#: Item.Submitter.UserName %> (<%#: Item.Comments.Count %> comments)
+            <a href="<%#: GetRouteUrl("LinkByAddress", new { address = Item.Address }) %>">
+              <%#: Item.Address %>
+            </a>            
+            by <%#: Item.Submitter.UserName %> (<%#: Item.Comments.Count %> comments)
             <%--<img src="<%#: Item.Thumbnail %>" alt="Thumbnail"/>--%>
             <br />
           </ItemTemplate>
 
         </asp:ListView>
-
+      <br/><br />
+      <asp:HyperLink runat="server"
+        NavigateUrl="<%$RouteUrl:address=google.dk %>">
+        hyperlink
+      </asp:HyperLink>
     </section>
   </section>
 </asp:Content>

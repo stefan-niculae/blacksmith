@@ -1,1 +1,28 @@
-24-Dec-15 14:54:41: link[0] = Blacksmith.Models.Link
+24-Dec-15 23:48:54: found no suitable link by title
+24-Dec-15 23:49:02: found no suitable link by title
+24-Dec-15 23:49:31: found no suitable link by title
+24-Dec-15 23:49:34: found no suitable link by title
+24-Dec-15 23:50:01: found no suitable link by title !
+24-Dec-15 23:50:06: found no suitable link by title !
+26-Dec-15 18:54:05: found no suitable link by title !
+26-Dec-15 18:54:19: found no suitable link by title !
+26-Dec-15 18:55:20: found no suitable link by title !
+26-Dec-15 18:55:26: found no suitable link by title !
+26-Dec-15 18:57:37: found no suitable link by title !
+26-Dec-15 19:04:16: found no suitable link by title !
+26-Dec-15 19:06:26: found no suitable link by title !
+26-Dec-15 19:06:31: found no suitable link by title !
+26-Dec-15 19:06:55: found no suitable link by title !
+26-Dec-15 19:08:28: found no suitable link by title !
+26-Dec-15 19:08:31: found no suitable link by title !
+26-Dec-15 19:08:34: found no suitable link by title !
+26-Dec-15 19:10:28: found no suitable link by title !
+26-Dec-15 19:10:30: found no suitable link by title !
+26-Dec-15 19:11:45: found no suitable link by title !
+26-Dec-15 19:11:48: found no suitable link by title !
+26-Dec-15 19:12:10: found no suitable link by title !
+26-Dec-15 19:12:13: found no suitable link by title !
+26-Dec-15 19:16:02: found no suitable link by title !
+26-Dec-15 19:16:06: found no suitable link by title !
+26-Dec-15 19:18:46: found no suitable link by title !
+26-Dec-15 19:18:49: found no suitable link by title !

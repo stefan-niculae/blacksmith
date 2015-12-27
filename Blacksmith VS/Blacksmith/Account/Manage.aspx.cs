@@ -63,10 +63,10 @@ namespace Blacksmith.Account
         {
             return new List<Link>();
 
-            string userId = User.Identity.GetUserId();
-            string query = "Select * from links " +
-                           $"Where submitter = '{userId}'";
-            return LinkManager.ExecuteSelect(query);
+//            string userId = User.Identity.GetUserId();
+//            string query = "Select * from links " +
+//                           $"Where submitter = '{userId}'";
+//            return LinkManager.ExecuteSelect(query);
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)

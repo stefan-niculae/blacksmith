@@ -16,7 +16,7 @@ namespace Blacksmith
 //            return LinkManager.ExecuteSelect("Select * From links Order By date Desc");
 //        }
 
-        public IQueryable<Link> GetRecentLinks2()
+        public IQueryable<Models.Link> GetRecentLinks2()
         {
             return new ApplicationDbContext().Links;
         }

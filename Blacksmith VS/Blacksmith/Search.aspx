@@ -28,6 +28,9 @@
     <i class="fa fa-comments"></i>
     <i class="fa fa-clock-o"></i>
   </section>
+<%--  https://www.asp.net/web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/display_data_items_and_details --%>
+<%--look here for an example of generated table--%>
+
 <%--  <table id="mata"></table>--%>
 <%--  <asp:SqlDataSource runat="server" ID="LinksDataSource"--%>
 <%--    SelectCommand="Select title From Links"--%>

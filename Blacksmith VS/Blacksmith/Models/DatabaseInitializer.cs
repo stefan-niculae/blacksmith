@@ -24,8 +24,7 @@ namespace Blacksmith.Models
             };
 
             var manager = new UserManager<User>(new UserStore<User>(context));
-
-            // FIXME why can't I log in with this password?
+            
             var result = manager.Create(stefan, password: "Pa$$word1");
             if (!result.Succeeded)
                 DebugLogger.Log("stefan creation error: " + result.Errors.Aggregate("", (current, error) => current + error + "\n"));
