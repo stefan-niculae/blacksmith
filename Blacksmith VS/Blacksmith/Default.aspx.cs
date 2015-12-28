@@ -7,18 +7,10 @@ namespace Blacksmith
 {
     public partial class _Default : Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+        public IQueryable<Models.Link> GetRecentLinks()
         {
-        }
-
-//        public List<Link> GetRecentLinks()
-//        {
-//            return LinkManager.ExecuteSelect("Select * From links Order By date Desc");
-//        }
-
-        public IQueryable<Models.Link> GetRecentLinks2()
-        {
-            return new ApplicationDbContext().Links;
+            return ApplicationDbContext.Instance.Links
+                .OrderByDescending(l => l.Date);
         }
     }
 }

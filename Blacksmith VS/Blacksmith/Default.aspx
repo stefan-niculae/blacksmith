@@ -15,7 +15,7 @@
     <section id="recent" class="col-md-6">
       <h3>Recent Links</h3>
         <asp:ListView ID="RecentLinksView" runat="server"
-          SelectMethod="GetRecentLinks2"
+          SelectMethod="GetRecentLinks"
           ItemType="Blacksmith.Models.Link">
 
           <ItemTemplate>

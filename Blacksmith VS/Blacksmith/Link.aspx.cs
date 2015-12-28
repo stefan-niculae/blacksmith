@@ -20,7 +20,7 @@ namespace Blacksmith
 //                loglabel.Text += kv.Key + " = " + kv.Value + ", ";
 
 
-            var db = new ApplicationDbContext();
+            var db = ApplicationDbContext.Instance;
             
             if (id.HasValue && id > 0)
                 return db.Links.Where(l => l.Id == id);

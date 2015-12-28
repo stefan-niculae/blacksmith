@@ -12,6 +12,8 @@ namespace Blacksmith.Account
 {
     public partial class Manage : System.Web.UI.Page
     {
+        private static Label DisplayedListView;
+
         protected string SuccessMessage
         {
             get;
@@ -42,83 +44,106 @@ namespace Blacksmith.Account
                 }
             }
 
+            // Bind the displayed ListView
+            if (!Page.IsPostBack)
+                DisplayedListView = debuglabel;
+
+            DisplayedListView.Text = "aaa";
 
             // Ajax calls
+            // TODO can't these be done more elegantly? Separate functions with annotations?
             string action = Request.QueryString["Action"];
             if (action == null) return;
 
-            using (var db = ApplicationDbContext.Create())
+            var db = ApplicationDbContext.Instance;
+            
+            try
             {
-                try
-                {
-                    var currentUser = db.Users.Find(User.Identity.GetUserId());
+                   
+                var id = Convert.ToInt32(Request.QueryString["id"]);
+                var link = db.Links.Find(id);
 
-                    var id = Convert.ToInt32(Request.QueryString["id"]);
-                    var link = db.Links.Find(id);
-
-                    if (action == "Insert")
-                        db.Links.Add(new Models.Link()
-                        {
-                            Title = Request.QueryString["title"],
-                            Address = Request.QueryString["address"],
-                            Description = Request.QueryString["description"],
-                            Date = DateTime.Now,
-                            Submitter = currentUser
-                        });
-
-                    if (action == "Update")
+                if (action == "Insert")
+                    db.Links.Add(new Models.Link()
                     {
-                        string field = Request.QueryString["field"].ToLower();
-                        string value = Request.QueryString["value"];
+                        Title = Request.QueryString["title"],
+                        Address = Request.QueryString["address"],
+                        Description = Request.QueryString["description"],
+                        Date = DateTime.Now,
+                        Submitter = CurrentUser()
+                    });
 
-                        DebugLogger.Log($"updating {field} to {value} for {id}");
-                        if (field == "title")
-                            link.Title = value;
-                        if (field == "address")
-                            link.Address = value;
-                        if (field == "description")
-                            link.Description = value;
-
-                        link.Date = DateTime.Now;
-                        link.Submitter = currentUser;
-
-                        //TryUpdateModel(link);
-                    }
-
-                    if (action == "Delete")
-                        db.Links.Remove(link);
-
-                    db.SaveChanges();
-                }
-
-                // TODO display this exception to the user
-                catch (Exception e)
+                if (action == "Update")
                 {
-                    DebugLogger.Log($"Exception on {action} of Links: {e.Message}");
-                    var ex = e as DbEntityValidationException;
-                    
-                    if (ex != null)
-                    {        
-                        // Retrieve the error messages as a list of strings.
-                        var errorMessages = ex.EntityValidationErrors
-                            .SelectMany(x => x.ValidationErrors)
-                            .Select(x => x.ErrorMessage);
+                    DisplayedListView.Text = "updatin";
+                    string field = Request.QueryString["field"].ToLower();
+                    string value = Request.QueryString["value"];
+                        
+                    if (field == "title")
+                        link.Title = value;
+                    if (field == "address")
+                        link.Address = value;
+                    if (field == "description")
+                        link.Description = value;
 
-                        // Combine the original exception message with the new one.
-                        DebugLogger.Log(" The validation errors are: " + string.Join("; ", errorMessages));
-                    }
-
+                    link.Date = DateTime.Now;
+                    link.Submitter = CurrentUser();
+                        
                 }
+
+                if (action == "Delete")
+                    db.Links.Remove(link);
+
+                db.SaveChanges();
+            }
+
+            // TODO display this exception to the user
+            catch (Exception e)
+            {
+                DebugLogger.Log($"Exception on {action} of Links: {e.Message}");
+                var ex = e as DbEntityValidationException;
+                    
+                if (ex != null)
+                {        
+                    var errorMessages = ex.EntityValidationErrors
+                        .SelectMany(x => x.ValidationErrors)
+                        .Select(x => x.ErrorMessage);
+
+                    DebugLogger.Log(" The validation errors are: " + string.Join("; ", errorMessages));
+                }
+
             }
         }
 
         public IQueryable<Models.Link> SubmittedLinks()
         {
-            var db = ApplicationDbContext.Create();
             string userId = User.Identity.GetUserId();
-            return db.Links
+
+            var links = ApplicationDbContext.Instance.Links
                 .Where(l => l.Submitter.Id == userId)
                 .OrderByDescending(l => l.Date);
+//                as List<Models.Link> 
+//                ?? new List<Models.Link>();
+//
+//            // Display a dummy link entry that will be used on the client side when inserting.
+//            // Initially the dummy link is hidden, but on insert it's cloned, 
+//            // has its values changed and displayed as a new link.
+//            links.Add(new Models.Link()
+//            {
+//                Title = "Dummy Title",
+//                Address = "dummy.com",
+//                Description = "Dummy link used for client side insertion visualisation",
+//                Submitter = CurrentUser(),
+//                Date = DateTime.Now
+//            });
+
+            return links;
+        }
+
+        public User CurrentUser()
+        {
+            var id = User.Identity.GetUserId();
+            return ApplicationDbContext.Instance.Users.Find(id);
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
