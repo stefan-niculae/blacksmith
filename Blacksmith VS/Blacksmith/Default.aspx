@@ -30,10 +30,7 @@
 
         </asp:ListView>
       <br/><br />
-      <asp:HyperLink runat="server"
-        NavigateUrl="<%$RouteUrl:address=google.dk %>">
-        hyperlink
-      </asp:HyperLink>
+
     </section>
   </section>
 </asp:Content>

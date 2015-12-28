@@ -93,6 +93,7 @@ rememberInitialValues = () ->
 
 @updateDB = (type, value, id, indicator, date, field) ->
   # Send DB update parameters
+  console.log "updatin #{type} to #{value} for id #{id}"
   $.ajax(url: "Manage?Action=Update&field=#{type}&value=#{value}&id=#{id}")
     .done ->
       # Update the new DB known value

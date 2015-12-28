@@ -39,42 +39,7 @@ namespace Blacksmith.Models
 
     public class LinkManager
     {
-        // Create
-        public static int Insert(Link link)
-        {
-            return 0;
-//            var connection = DatabaseHelper.NewConnection();
-//
-//            // TODO put link.submitterId here
-//            string query = "Insert Into links(Title, Description, Address, Submitter, Date) " +
-//                           $"Values('{link.Title}', '{link.Description}', '{link.Address}', 'submitterId', '{link.Date}'); " +
-//                           "Select @@Identity";
-//            var command = new SqlCommand(query, connection);
-//
-//            int newLinkId = Convert.ToInt32(command.ExecuteScalar());
-//
-//            DatabaseHelper.Cleanup(connection, command);
-//            return newLinkId;
-        }
-
-        // Read
-        public static List<Link> ExecuteSelect(string query)
-        {
-            return null;
-//            var connection = DatabaseHelper.NewConnection();
-//
-//            var command = new SqlCommand(query, connection);
-//            var reader = command.ExecuteReader();
-//
-//            var links = new List<Link>();
-//            if (reader.HasRows)
-//                while (reader.Read())
-//                    links.Add(new Link(reader));
-//
-//            DatabaseHelper.Cleanup(connection, command);
-//            return links;
-        }
-
+        
         // Update
         public static int Update(string field, string value, int id)
         {
@@ -91,18 +56,6 @@ namespace Blacksmith.Models
 //            DatabaseHelper.Cleanup(connection, command);
 //            return rowsUpdated;
         }
-
-        // Delete
-        public static bool Delete(int id)
-        {
-            return false;
-//            var connection = DatabaseHelper.NewConnection();
-//            var command = new SqlCommand($"Delete From Links Where id = {id}", connection);
-//
-//            int rowsDeleted = command.ExecuteNonQuery();
-//
-//            DatabaseHelper.Cleanup(connection, command);
-//            return rowsDeleted != 0;
-        }
+        
     }
 }

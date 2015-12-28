@@ -11,18 +11,13 @@ namespace Blacksmith
 {
     public partial class Link : Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            loglabel.Text = "aaa";
-        }
-
         public IQueryable<Models.Link> GetLink(
             [QueryString("id")] int? id,
             [RouteData] string address)
         {
-            loglabel.Text = $"id = {id}, address = {address}, is null = {string.IsNullOrEmpty(address)}; ceva value = {RouteData.Values["address"]}, ";
-            foreach (var kv in RouteData.Values)
-                loglabel.Text += kv.Key + " = " + kv.Value + ", ";
+//            loglabel.Text = $"id = {id}, address = {address}, is null = {string.IsNullOrEmpty(address)}; ceva value = {RouteData.Values["address"]}, ";
+//            foreach (var kv in RouteData.Values)
+//                loglabel.Text += kv.Key + " = " + kv.Value + ", ";
 
 
             var db = new ApplicationDbContext();
@@ -36,7 +31,7 @@ namespace Blacksmith
             if (!string.IsNullOrEmpty(address))
                 return db.Links.Where(l => l.Address == address);
 
-            DebugLogger.Log("found no suitable link by title " + address + "!");
+//            DebugLogger.Log("found no suitable link by title " + address + "!");
 
             // TODO redirect to homepage if no links where found (invalid id)
             //            Response.Redirect("Default");

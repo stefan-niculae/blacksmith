@@ -103,6 +103,7 @@
   };
 
   this.updateDB = function(type, value, id, indicator, date, field) {
+    console.log("updatin " + type + " to " + value + " for id " + id);
     return $.ajax({
       url: "Manage?Action=Update&field=" + type + "&value=" + value + "&id=" + id
     }).done(function() {

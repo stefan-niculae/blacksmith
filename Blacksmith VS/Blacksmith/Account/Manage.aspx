@@ -17,7 +17,7 @@
     <a class="col-md-offset-10 col-md-1" href="~/Account/ManagePassword" runat="server" title="Change password"><i class="fa fa-key"></i> Change password</a>
     <asp:LoginStatus CssClass="col-md-1" runat="server" LogoutAction="Redirect" LogoutText="<i class='fa fa-sign-out'></i> Log out" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
   </div>
-  
+
   <section id="creation">
     <h2><i class="fa fa-plus"></i> New Link</h2>
 
