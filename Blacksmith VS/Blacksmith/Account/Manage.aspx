@@ -51,6 +51,39 @@
 
   <section id="submitted" class="col-md-offset-3 col-md-6">
     <h2><span class="glyphicon glyphicon-link" aria-hidden="true"></span> Submitted Links</h2>
+    
+    <%-- Used when inserting a new link--%>
+    <article class="big-link row" db-id="X" id="clonable">
+          <hr/>
+      <h3 title="Title" class="title" 
+        contenteditable onfocus="registerFocus('X', 'title')" 
+        onkeyup="updateFocused()" onblur="updateFocused()">
+        Clonable Title
+      </h3>
+      <span class="date difference" abs-date="X" title="Date submitted: 24-jan-15 11:10">X</span>
+      <br/>
+            
+      <img class="favicon" alt="Favicon" src="" title="Favicon"/>
+      <span class="address" title="Address" 
+        contenteditable onfocus="registerFocus('X', 'address')" 
+        onkeyup="updateFocused()" onblur="updateFocused()">
+      X
+      </span> 
+      <a class="visit-link" href="http://X" title="Visit X"><i class="fa fa-external-link"></i></a>
+      <br/>
+
+      <p class="description" title="Description" 
+        contenteditable onfocus="registerFocus('X', 'description')" 
+        onkeyup="updateFocused()" onblur="updateFocused()">
+        X
+      </p>
+            
+      <div class="updating-wrapper">
+        <span class="working-indicator"><i class="fa fa-circle-o-notch fa-spin"></i> Update pending</span>
+      </div>
+            
+      <button onclick="sendDelete(X); return false;" class="btn btn-danger delete-button"><i class="fa fa-trash"></i></button>
+    </article>
 
     <asp:ListView ID="submissions" runat="server"
       SelectMethod="SubmittedLinks"
@@ -60,9 +93,9 @@
         </EmptyDataTemplate>
 
         <ItemTemplate>
+          <article class="big-link row" db-id=<%# Item.Id %>>
           <hr/>
 
-          <article class="big-link row" db-id=<%# Item.Id %>>
             <%-- For each editable field, register it as the current when selected --%>
             <%-- so on deselect, we know which db entity to update --%>
             <h3 title="Title" class="title" 

@@ -110,9 +110,20 @@ rememberInitialValues = () ->
   address = form.find(".address").text().trim()
   description = form.find(".description").text().trim()
   
-  $.ajax(url: "Manage?Action=Insert&title=#{title}&address=#{address}&description=#{description}")
-    .done ->
-      console.log "done inserting!"
+  displayInserted title, address, description
+  
+  #$.ajax(url: "Manage?Action=Insert&title=#{title}&address=#{address}&description=#{description}")
+   # .done ->
+    #  console.log "done inserting!"
+      
+displayInserted = (title, address, description) ->
+  console.log "test #{title}"
+  clonable = $ "#clonable.big-link"
+  displayed = clonable
+    .clone()
+    .css("display", "visible")
+    .attr("id", "")
+    .insertAfter(clonable)
       
 @sendDelete = (id) ->
   $.ajax(url: "Manage?Action=Delete&id=#{id}")
