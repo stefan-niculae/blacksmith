@@ -3,14 +3,15 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Blacksmith.Models
 {
+
     public class ApplicationDbContext : IdentityDbContext<User>
     {
         private ApplicationDbContext()
             : base("Blacksmith", throwIfV1Schema: false)
         {
+
         }
 
-        // Needs to be used like this in Owin
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

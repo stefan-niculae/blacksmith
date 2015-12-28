@@ -264,3 +264,6 @@ C:\Users\Stefan\Desktop\blacksmith\Blacksmith VS\Blacksmith\bin\Microsoft.Owin.S
 C:\Users\Stefan\Desktop\blacksmith\Blacksmith VS\Blacksmith\obj\Debug\Blacksmith.csprojResolveAssemblyReference.cache
 C:\Users\Stefan\Desktop\blacksmith\Blacksmith VS\Blacksmith\obj\Debug\Blacksmith.dll
 C:\Users\Stefan\Desktop\blacksmith\Blacksmith VS\Blacksmith\obj\Debug\Blacksmith.pdb
+C:\Users\Stefan\Downloads\blacksmith-3dce23a82ff890a5311e53b9b4c431ccfeb37468\Blacksmith VS\Blacksmith\obj\Debug\Blacksmith.csprojResolveAssemblyReference.cache
+C:\Users\Stefan\Downloads\blacksmith-3dce23a82ff890a5311e53b9b4c431ccfeb37468\Blacksmith VS\Blacksmith\obj\Debug\Blacksmith.dll
+C:\Users\Stefan\Downloads\blacksmith-3dce23a82ff890a5311e53b9b4c431ccfeb37468\Blacksmith VS\Blacksmith\obj\Debug\Blacksmith.pdb

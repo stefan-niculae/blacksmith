@@ -48,7 +48,6 @@
     </article>
   </section>
   
-  <asp:Label runat="server" ID="debuglabel"></asp:Label>
 
   <section id="submitted" class="col-md-offset-3 col-md-6">
     <h2><span class="glyphicon glyphicon-link" aria-hidden="true"></span> Submitted Links</h2>
@@ -57,7 +56,7 @@
       SelectMethod="SubmittedLinks"
       ItemType="Blacksmith.Models.Link">
         <EmptyDataTemplate>
-          No submitted links: try adding one using the form above this)!
+          No submitted links: try adding one using the form above this
         </EmptyDataTemplate>
 
         <ItemTemplate>

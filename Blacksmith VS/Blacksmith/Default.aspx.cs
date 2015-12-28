@@ -9,8 +9,7 @@ namespace Blacksmith
     {
         public IQueryable<Models.Link> GetRecentLinks()
         {
-            return ApplicationDbContext.Create().Links
-                .OrderByDescending(l => l.Date);
+            return ApplicationDbContext.Create().Links;
         }
     }
 }
