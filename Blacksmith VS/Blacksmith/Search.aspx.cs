@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using Blacksmith.Models;
 
 namespace Blacksmith
 {
@@ -7,6 +9,11 @@ namespace Blacksmith
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        public IQueryable<Models.Link> GetLinks()
+        {
+            return new ApplicationDbContext().Links;
         }
     }
 }

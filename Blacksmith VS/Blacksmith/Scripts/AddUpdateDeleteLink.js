@@ -80,7 +80,7 @@
       elem.find(".visit-link").attr("title", "Visit " + content).attr("href", "" + (prependHttp(content)));
     }
     indicator.css("visibility", "visible");
-    date = elem.find(".date");
+    date = elem.find(".date.difference");
     formattedDate = moment().format("DD-MMM-YY HH:mm:ss");
     date.attr("abs-date", formattedDate).attr("title", "Date updated: " + formattedDate);
     if (!!field.data("update-timeout")) {

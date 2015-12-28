@@ -23,17 +23,14 @@
       <br/>
       comments: <%# Item.Comments.Count %>
       <br/>
-      <asp:ListView runat="server"
-        ItemType="Blacksmith.Models.Comment"
-        DataKeyNames="Id"
-        SelectMethod="GetComments">
+      <asp:Repeater runat="server"
+        DataSource="<%# Item.Comments %>"
+        ItemType="Blacksmith.Models.Comment">
         <ItemTemplate>
-          comment: <%# Item.Content %>
-          <br/>
-          comment submitter: <%# Item.Submitter.UserName %>
+          <%# Item.Content %> by <%# Item.Submitter.UserName %>
           <br/>
         </ItemTemplate>
-      </asp:ListView>
+      </asp:Repeater>
       <br/>
 
     </ItemTemplate>

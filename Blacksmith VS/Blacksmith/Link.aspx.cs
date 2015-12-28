@@ -42,15 +42,5 @@ namespace Blacksmith
             //            Response.Redirect("Default");
             return null;
         }
-
-        // TODO can't this be done in the view only?
-        public IQueryable<Comment> GetComments([QueryString("id")] int? id)
-        {
-            var db = new ApplicationDbContext();
-
-            if (id.HasValue && id > 0)
-                return db.Comments.Where(c => c.Link.Id == id);
-            return null;
-        } 
     }
 }

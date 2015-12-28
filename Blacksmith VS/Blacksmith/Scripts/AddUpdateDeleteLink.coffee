@@ -70,7 +70,7 @@ rememberInitialValues = () ->
   indicator.css("visibility", "visible")
   
   # Update the date
-  date = elem.find(".date")
+  date = elem.find(".date.difference")
   formattedDate = moment().format("DD-MMM-YY HH:mm:ss")
   date
     .attr("abs-date", formattedDate)
