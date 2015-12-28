@@ -5,14 +5,6 @@ namespace Blacksmith.Models
 {
     public class ApplicationDbContext : IdentityDbContext<User>
     {
-        private static ApplicationDbContext _instance;
-
-        // Singleton
-        // This way of accessing the context ensures there is only one available
-        // thus removing inconsistencies
-        public static ApplicationDbContext Instance 
-            => _instance ?? (_instance = new ApplicationDbContext());
-
         private ApplicationDbContext()
             : base("Blacksmith", throwIfV1Schema: false)
         {
@@ -21,7 +13,7 @@ namespace Blacksmith.Models
         // Needs to be used like this in Owin
         public static ApplicationDbContext Create()
         {
-            return _instance ?? (_instance = new ApplicationDbContext());
+            return new ApplicationDbContext();
         }
 
         public DbSet<Link> Links { get; set; }
