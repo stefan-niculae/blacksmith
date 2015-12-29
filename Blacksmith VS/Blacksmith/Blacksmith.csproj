@@ -190,6 +190,7 @@
     <Content Include="Images\anvil-transp-512.png" />
     <Content Include="Images\favicon.ico" />
     <Content Include="Link.aspx" />
+    <Content Include="Profile.aspx" />
     <Content Include="Scripts\AddUpdateDeleteLink.js.map">
       <DependentUpon>AddUpdateDeleteLink.js</DependentUpon>
     </Content>
@@ -320,6 +321,13 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Link.cs" />
     <Compile Include="Models\DatabaseInitializer.cs" />
+    <Compile Include="Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Search.aspx.cs">
       <DependentUpon>Search.aspx</DependentUpon>

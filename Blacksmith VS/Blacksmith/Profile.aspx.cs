@@ -7,42 +7,71 @@ using Blacksmith.Models;
 using Blacksmith.Utilities;
 using Microsoft.AspNet.Identity;
 
-namespace Blacksmith.Account
+namespace Blacksmith
 {
-    public partial class Manage : System.Web.UI.Page
+    public partial class Profile : System.Web.UI.Page
     {
-        protected string SuccessMessage
+        protected string SuccessMessage { get; private set; }
+        protected string Username { get; private set; }
+
+        protected bool canAdd { get; private set; }
+        protected bool canEdit { get; private set; }
+        protected bool canDelete { get; private set; }
+
+        protected void Page_Load(object sender, EventArgs e)
         {
-            get;
-            private set;
+            FillInfo();
+            HandleRights();
+            ShowMessage();
+            HandleAjax();
         }
 
-        protected void Page_Load()
+        void ShowMessage()
         {
             // Built-in stuff
-            if (!IsPostBack)
-            {
-                // Render success message
-                var message = Request.QueryString["m"];
-                if (message != null)
-                {
-                    // Strip the query string from action
-                    Form.Action = ResolveUrl("~/Account/Manage");
+            if (IsPostBack) return;
+            
+            // Render success message
+            var message = Request.QueryString["m"];
+            if (message == null) return;
 
-                    SuccessMessage =
-                        message == "ChangePwdSuccess"
-                            ? "Your password has been changed."
-                            : message == "SetPwdSuccess"
-                                ? "Your password has been set."
-                                : message == "RemoveLoginSuccess"
-                                    ? "The account was removed."
-                                    : string.Empty;
-                    successMessage.Visible = !string.IsNullOrEmpty(SuccessMessage);
-                }
-            }
+            // Strip the query string from action
+            Form.Action = ResolveUrl("~/Account/Manage");
 
+            SuccessMessage =
+                message == "ChangePwdSuccess"
+                    ? "Your password has been changed."
+                    : message == "SetPwdSuccess"
+                        ? "Your password has been set."
+                        : message == "RemoveLoginSuccess"
+                            ? "The account was removed."
+                            : string.Empty;
+            successMessage.Visible = !string.IsNullOrEmpty(SuccessMessage);
+        }
 
-            // Ajax calls
+        void HandleRights()
+        {
+            var db = ApplicationDbContext.Create();
+            var signedUser = db.Users.Find(User.Identity.GetUserId());
+
+            bool isLoggedUser = (Username == signedUser.UserName);
+            bool isModerator = false;
+
+            canAdd = isLoggedUser;
+            canEdit = isLoggedUser;
+            canDelete = isLoggedUser || isModerator;
+
+            administration.Visible = isLoggedUser;
+            creation.Visible = canAdd;
+        }
+
+        void FillInfo()
+        {
+            Username = Request.QueryString["user"];
+        }
+
+        void HandleAjax()
+        {
             string action = Request.QueryString["Action"];
             if (action == null) return;
 
@@ -69,7 +98,7 @@ namespace Blacksmith.Account
                     {
                         string field = Request.QueryString["field"].ToLower();
                         string value = Request.QueryString["value"];
-                        
+
                         if (field == "title")
                             link.Title = value;
                         if (field == "address")
@@ -88,32 +117,34 @@ namespace Blacksmith.Account
                 }
 
                 // TODO display this exception to the user
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    DebugLogger.Log($"Exception on {action} of Links: {e.Message}");
-                    var ex = e as DbEntityValidationException;
-                    
-                    if (ex != null)
-                    {        
+                    DebugLogger.Log($"Exception on {action} of Links: {ex.Message}");
+                    var validation = ex as DbEntityValidationException;
+
+                    if (validation != null)
+                    {
                         // Retrieve the error messages as a list of strings.
-                        var errorMessages = ex.EntityValidationErrors
+                        var errorMessages = validation.EntityValidationErrors
                             .SelectMany(x => x.ValidationErrors)
                             .Select(x => x.ErrorMessage);
 
                         // Combine the original exception message with the new one.
                         DebugLogger.Log(" The validation errors are: " + string.Join("; ", errorMessages));
                     }
-
                 }
             }
         }
 
         public IQueryable<Models.Link> SubmittedLinks()
         {
+            if (string.IsNullOrEmpty(Request.QueryString["user"]))
+                return null;
+
             var db = ApplicationDbContext.Create();
-            string userId = User.Identity.GetUserId();
+            var user = db.Users.Single(u => u.UserName == Username);
             return db.Links
-                .Where(l => l.Submitter.Id == userId)
+                .Where(l => l.Submitter.Id == user.Id)
                 .OrderByDescending(l => l.Date);
         }
 

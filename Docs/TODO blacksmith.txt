@@ -18,12 +18,10 @@ center .action-wrapper (without the width: 18% workaround!)
 
 ?when clicking a contenteditable, make it as big as the line permits (not just as big as the text)
 
-move submitted links & link adding to the user page
-
 also offset to the right change pw and logout
-
-make the database connection string go through the web.config variable in search.aspx, not be hardcoded
 
 ? facebook login
 
 make 1 page for login & register
+
+enforce unique addresses (when inserting check exceptions)

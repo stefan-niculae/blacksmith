@@ -95,7 +95,7 @@
                   </a>
                 </li>
                 <li>
-                  <a runat="server" href="~/Account/Manage" title="Manage account and submitted links">
+                  <a href="/Profile?user=<%: Context.User.Identity.GetUserName() %>" title="Manage account and submitted links">
                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%: Context.User.Identity.GetUserName()  %>
                   </a>
                 </li>

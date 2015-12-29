@@ -20,7 +20,8 @@
 
           <ItemTemplate>
             <img src="<%#: Item.Favicon %>" alt="Favicon"/>
-            <a href="<%#: GetRouteUrl("LinkByAddress", new { address = Item.Address }) %>">
+<%--            <a href="<%#: GetRouteUrl("LinkByAddress", new { address = Item.Address }) %>">--%>
+            <a href="Link?addr=<%# Item.Address %>">
               <%#: Item.Address %>
             </a>            
             by <%#: Item.Submitter.UserName %> (<%#: Item.Comments.Count %> comments)
