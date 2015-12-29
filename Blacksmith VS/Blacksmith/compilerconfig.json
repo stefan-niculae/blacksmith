@@ -14,5 +14,9 @@
   {
     "outputFile": "Scripts/Search.js",
     "inputFile": "Scripts/Search.coffee"
+  },
+  {
+    "outputFile": "Scripts/Home.js",
+    "inputFile": "Scripts/Home.coffee"
   }
 ]

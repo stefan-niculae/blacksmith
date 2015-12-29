@@ -2,7 +2,7 @@
 
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
   <script src="/Scripts/moment.min.js"></script>
-  <script src="/Scripts/AddUpdateDeleteLink.js"></script>
+  <script src="/Scripts/AddUpdateDeleteLink.min.js"></script>
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">

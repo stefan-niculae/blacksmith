@@ -1,5 +1,10 @@
 ﻿<%@ Page Title="Home" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Blacksmith._Default" %>
 
+<asp:Content runat="server" ContentPlaceHolderID="HeadContent">
+  <script src="/Scripts/moment.min.js"></script>
+  <script src="/Scripts/Home.js"></script>
+</asp:Content>
+
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
   <header class="text-center">
@@ -24,7 +29,11 @@
             <a href="Link?addr=<%# Item.Address %>">
               <%#: Item.Address %>
             </a>            
-            by <%#: Item.Submitter.UserName %> (<%#: Item.Comments.Count %> comments)
+            by 
+            <a href="Profile?user=<%# Item.Submitter.UserName %>">
+              <%#: Item.Submitter.UserName %> 
+            </a>
+            <i class="fa fa-clock-o"></i> <span class="date"><%#: Item.Date %></span>
             <%--<img src="<%#: Item.Thumbnail %>" alt="Thumbnail"/>--%>
             <br />
           </ItemTemplate>
