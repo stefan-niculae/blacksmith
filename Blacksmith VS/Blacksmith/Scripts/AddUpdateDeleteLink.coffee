@@ -1,15 +1,16 @@
 ﻿# CoffeeScript
 
 $ ->
-  # Convert dates from absolute time to distance from now
-  convertDates()
-  # and refresh them every minute
+  for article in $ "#submitted article"
+    prepareArticle $ article
+    
+  # Refresh updating date difference every minute
   setInterval convertDates, 59000
-  
-  # Save original value for undoing 
-  # and the one the db knows to save unnecessary DB accesses
-  rememberInitialValues()  
-  
+
+prepareArticle = (article) ->
+  convertDate article.find ".date.difference"
+  for editable in article.find "[contenteditable]"
+    rememberInitialValue $ editable
     
 convertDates = () ->
   #map `moment` format
@@ -17,16 +18,18 @@ convertDates = () ->
     convertDate $ elem
     
 convertDate = ($elem) ->
+  # Convert dates from absolute time to distance from now
   date = $elem.attr("abs-date")
   distance = moment(date, "DD-MMM-YY HH:mm:ss").fromNow()
   $elem.text(distance) unless distance is "Invalid date"
 
-rememberInitialValues = () ->
-  for elem in $("[contenteditable]")
-    $elem = $(elem)
-    value = $elem.text().trim()
-    $elem.data("original", value)
-    $elem.data("db-cache", value)
+rememberInitialValue = ($elem) ->
+  # Save original value for undoing 
+  # and the one the db knows to save unnecessary DB accesses
+  value = $elem.text().trim()
+  $elem.data("original", value)
+  $elem.data("db-cache", value)
+  
 
 @focused  
 @registerFocus = (id, type) ->
@@ -110,20 +113,20 @@ rememberInitialValues = () ->
   address = form.find(".address").text().trim()
   description = form.find(".description").text().trim()
   
-  displayInserted title, address, description
-  
-  #$.ajax(url: "Manage?Action=Insert&title=#{title}&address=#{address}&description=#{description}")
-   # .done ->
-    #  console.log "done inserting!"
-      
-displayInserted = (title, address, description) ->
-  console.log "test #{title}"
-  clonable = $ "#clonable.big-link"
-  displayed = clonable
-    .clone()
-    .css("display", "visible")
-    .attr("id", "")
-    .insertAfter(clonable)
+  $ "<div></div>"
+    .addClass "just-inserted"
+    .css "display", "none"
+    .insertAfter "#submitted h2"
+    .load "Manage?Action=Insert&title=#{title}&address=#{address}&description=#{description} #submitted article:first",  -> 
+      $ this
+        .slideDown
+          complete: ->
+            $ this
+              .find "article"
+              .unwrap()
+              
+      prepareArticle $ this
+      console.log "done inserting and loading!"
       
 @sendDelete = (id) ->
   $.ajax(url: "Manage?Action=Delete&id=#{id}")
