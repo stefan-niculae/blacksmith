@@ -46,7 +46,7 @@ namespace Blacksmith.Models
                     Title = "Google",
                     Address = "google.dk",
                     Description = "Google Denmark",
-                    Date = DateTime.Now,
+                    Date = DateTime.Now.AddDays(-2),
                     Submitter = stefan
                 },
                 new Link
@@ -78,6 +78,7 @@ namespace Blacksmith.Models
                     Id = 1,
                     Link = links[0],
                     Content = "Best search engine!",
+                    Date = DateTime.Now.AddDays(-1),
                     Submitter = stefan
                 },
                 new Comment
@@ -85,6 +86,7 @@ namespace Blacksmith.Models
                     Id = 2,
                     Link = links[0],
                     Content = "Why denmark link though?",
+                    Date = DateTime.Now,
                     Submitter = ionut
                 },
                 new Comment
@@ -92,6 +94,7 @@ namespace Blacksmith.Models
                     Id = 3,
                     Link = links[1],
                     Content = "Amazon rocks!",
+                    Date = DateTime.Now.AddDays(-3),
                     Submitter = ionut
                 },
             };

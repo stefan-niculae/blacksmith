@@ -18,12 +18,12 @@ namespace Blacksmith.Models
 
         [StringLength(1000), DataType(DataType.MultilineText)]
         public string Description { get; set; }
-        
-        [Required]
-        public virtual User Submitter { get; set; }
 
         [Required, DataType(DataType.DateTime)]
         public DateTime Date { get; set; }
+
+        [Required]
+        public virtual User Submitter { get; set; }
         
         public virtual ICollection<Comment> Comments { get; set; }
 

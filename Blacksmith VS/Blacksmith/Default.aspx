@@ -33,7 +33,7 @@
             <a href="Profile?user=<%# Item.Submitter.UserName %>">
               <%#: Item.Submitter.UserName %> 
             </a>
-            <i class="fa fa-clock-o"></i> <span class="date"><%#: Item.Date %></span>
+            <i class="fa fa-clock-o"></i> <span class="date" title="Date submitted: <%# Item.Date %>"><%#: Item.Date %></span>
             <%--<img src="<%#: Item.Thumbnail %>" alt="Thumbnail"/>--%>
             <br />
           </ItemTemplate>

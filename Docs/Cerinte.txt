@@ -1,0 +1,29 @@
+Social bookmarking (delicious.com):
+	3 tipuri utilizatori: neinregistrat, membru, moderator
+
+	oricine poate vedea bookmarkurile salvate pe site
+
+	membrii 
+		pot adauga bookmark
+		pot salva bookmarkuri sub diferite categorii
+		au profil (cu bookmarkurile salvate)
+		comenta la bookmarkuri
+
+	moderatorii pot sterge
+		bookmarkuri
+		comentarii
+
+
+	un bookmark are
+		?poza thumbnail (cu sursa de unde a fost preluat) (favicon?)
+		titlu
+		descriere
+		taguri (prin care pot fi regasite de membrii)
+		siteuri similare (doar url-uri)
+		comentarii
+
+	pagina principala: liste cu cele mai populare si cele mai recente recente (paginate)
+
+	motor cautare 
+		dupa titlu, descriere sau taguri
+		?rezultate sortate dupa criteriu utilizator (paginat)
