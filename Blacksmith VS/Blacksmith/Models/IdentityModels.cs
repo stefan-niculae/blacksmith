@@ -15,6 +15,7 @@ namespace Blacksmith.Models
         public virtual ICollection<Link> Links { get; set; }
         //[ForeignKey("Id")]
         public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Favorite> Favorites { get; set; } 
 
         public ClaimsIdentity GenerateUserIdentity(ApplicationUserManager manager)
         {
@@ -29,7 +30,6 @@ namespace Blacksmith.Models
             return Task.FromResult(GenerateUserIdentity(manager));
         }
     }
-
 }
 
 #region Helpers

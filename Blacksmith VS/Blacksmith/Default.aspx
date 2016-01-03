@@ -11,16 +11,40 @@
     <h1>Blacksmith</h1>
     <p>Find and share links</p>
   </header>
-
+  
+  <%--  TODO pagination for both recent and popular--%>
   <section id="links" class="fluid-container row">
     <section id="popular" class="col-md-6">
       <h3>Popular Links</h3>
-      TODO: ordered list of most popular links with star count (paginated)
+      <asp:ListView runat="server"
+        SelectMethod="PopularLinks"
+        ItemType="Blacksmith.Models.Link">
+        
+        <ItemTemplate>
+            <img src="<%#: Item.Favicon %>" alt="Favicon"/>
+            <a href="Link?addr=<%# Item.Address %>">
+                <%#: Item.Address %>
+            </a>            
+            by 
+            <a href="Profile?user=<%# Item.Submitter.UserName %>">
+              <%#: Item.Submitter.UserName %> 
+            </a>
+          
+<%--            <%$ if (HasFavorited(Item.Id)) { %>--%>
+<%--              fav--%>
+<%--            <%$ } else { %>--%>
+<%--              nofav--%>
+<%--            <%$ } %>--%>
+            
+        </ItemTemplate>
+        
+      </asp:ListView>
     </section>
+
     <section id="recent" class="col-md-6">
       <h3>Recent Links</h3>
         <asp:ListView ID="RecentLinksView" runat="server"
-          SelectMethod="GetRecentLinks"
+          SelectMethod="RecentLinks"
           ItemType="Blacksmith.Models.Link">
 
           <ItemTemplate>

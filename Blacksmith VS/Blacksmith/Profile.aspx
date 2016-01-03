@@ -18,7 +18,7 @@
     <asp:LoginStatus CssClass="col-md-1" runat="server" LogoutAction="Redirect" LogoutText="<i class='fa fa-sign-out'></i> Log out" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
   </div>
 
-  <section id="creation" runat="server">
+  <section id="creation" runat="server" ClientIDMode="Static">
     <h2><i class="fa fa-plus"></i> New Link</h2>
 
     <article id="inserting-link" class="big-link row">

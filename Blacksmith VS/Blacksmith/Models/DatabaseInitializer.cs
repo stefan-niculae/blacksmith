@@ -98,8 +98,28 @@ namespace Blacksmith.Models
                     Submitter = ionut
                 },
             };
-            
             context.Comments.AddRange(comments);
+
+            var favorites = new List<Favorite>
+            {
+                new Favorite
+                {
+                    Id = 1,
+                    Category = "shopping",
+                    Date = DateTime.Now.AddHours(-2),
+                    Link = links[1],
+                    User = stefan
+                },
+                new Favorite
+                {
+                    Id = 1,
+                    Category = "shopping",
+                    Date = DateTime.Now.AddHours(-1),
+                    Link = links[2],
+                    User = stefan
+                },
+            };
+            context.Favorites.AddRange(favorites);
         }
         
     }

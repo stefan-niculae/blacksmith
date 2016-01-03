@@ -95,9 +95,9 @@ rememberInitialValue = ($elem) ->
   return link
 
 @updateDB = (type, value, id, indicator, date, field) ->
+  # TODO have a better way of inserting params into url, rather than hardcoding it this way
   # Send DB update parameters
-  console.log "updatin #{type} to #{value} for id #{id}"
-  $.ajax(url: "Manage?Action=Update&field=#{type}&value=#{value}&id=#{id}")
+  $.ajax(url: "#{window.location.href}&Action=Update&field=#{type}&value=#{value}&id=#{id}")
     .done ->
       # Update the new DB known value
       field.data("db-cache", value)
@@ -113,11 +113,13 @@ rememberInitialValue = ($elem) ->
   address = form.find(".address").text().trim()
   description = form.find(".description").text().trim()
   
+  console.log "url = #{window.location.href}&Action=Insert&title=#{title}&address=#{address}&description=#{description}"
+  
   $ "<div></div>"
     .addClass "just-inserted"
     .css "display", "none"
     .insertAfter "#submitted h2"
-    .load "Manage?Action=Insert&title=#{title}&address=#{address}&description=#{description} #submitted article:first",  -> 
+    .load "#{window.location.href}&Action=Insert&title=#{title}&address=#{address}&description=#{description} #submitted article:first",  -> 
       $ this
         .slideDown
           complete: ->
@@ -129,7 +131,7 @@ rememberInitialValue = ($elem) ->
       console.log "done inserting and loading!"
       
 @sendDelete = (id) ->
-  $.ajax(url: "Manage?Action=Delete&id=#{id}")
+  $.ajax(url: "#{window.location.href}&Action=Delete&id=#{id}")
     .done ->
       $("[db-id='#{id}']").slideUp()
       console.log "done deleting!"

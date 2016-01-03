@@ -19,6 +19,7 @@ namespace Blacksmith.Models
 
         public DbSet<Link> Links { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Favorite> Favorites { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -112,9 +112,8 @@
   };
 
   this.updateDB = function(type, value, id, indicator, date, field) {
-    console.log("updatin " + type + " to " + value + " for id " + id);
     return $.ajax({
-      url: "Manage?Action=Update&field=" + type + "&value=" + value + "&id=" + id
+      url: "" + window.location.href + "&Action=Update&field=" + type + "&value=" + value + "&id=" + id
     }).done(function() {
       field.data("db-cache", value);
       indicator.css("visibility", "hidden");
@@ -129,7 +128,8 @@
     title = form.find(".title").text().trim();
     address = form.find(".address").text().trim();
     description = form.find(".description").text().trim();
-    return $("<div></div>").addClass("just-inserted").css("display", "none").insertAfter("#submitted h2").load("Manage?Action=Insert&title=" + title + "&address=" + address + "&description=" + description + " #submitted article:first", function() {
+    console.log("url = " + window.location.href + "&Action=Insert&title=" + title + "&address=" + address + "&description=" + description);
+    return $("<div></div>").addClass("just-inserted").css("display", "none").insertAfter("#submitted h2").load("" + window.location.href + "&Action=Insert&title=" + title + "&address=" + address + "&description=" + description + " #submitted article:first", function() {
       $(this).slideDown({
         complete: function() {
           return $(this).find("article").unwrap();
@@ -142,7 +142,7 @@
 
   this.sendDelete = function(id) {
     return $.ajax({
-      url: "Manage?Action=Delete&id=" + id
+      url: "" + window.location.href + "&Action=Delete&id=" + id
     }).done(function() {
       $("[db-id='" + id + "']").slideUp();
       return console.log("done deleting!");

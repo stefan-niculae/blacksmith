@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 using Blacksmith.Models;
 using Blacksmith.Utilities;
 using Microsoft.AspNet.Identity;
+using Microsoft.Owin.BuilderProperties;
 
 namespace Blacksmith
 {
@@ -120,6 +121,7 @@ namespace Blacksmith
                 catch (Exception ex)
                 {
                     DebugLogger.Log($"Exception on {action} of Links: {ex.Message}");
+                    DebugLogger.Log($"Username = {Username}, title = {Request.QueryString["title"]}, addr = {Request.QueryString["address"]}, desc = {Request.QueryString["description"]}");
                     var validation = ex as DbEntityValidationException;
 
                     if (validation != null)
