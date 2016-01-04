@@ -70,7 +70,9 @@
               <% if (canEdit) { %> allows-edit <% } %>
               onfocus="registerFocus('<%# Item.Id %>', 'title')" 
               onkeyup="updateFocused()" onblur="updateFocused()">
-              <%# Item.Title %>
+              <a href="Link?addr=<%# Item.Address %>">
+                <%# Item.Title %>
+              </a>
             </h3>
             <span class="date difference" abs-date="<%# Item.Date %>" title="Date submitted: <%# Item.Date %>"><%# Item.Date %></span>
             <br/>
@@ -80,9 +82,10 @@
               <% if (canEdit) { %> allows-edit <% } %>
               onfocus="registerFocus('<%# Item.Id %>', 'address')" 
               onkeyup="updateFocused()" onblur="updateFocused()">
-            <%# Item.Address %>
+            <a href="http://<%# Item.Address %>">
+              <%# Item.Address %>
+            </a>
             </span> 
-            <a class="visit-link" href="http://<%# Item.Address %>" title="Visit <%# Item.Address %>"><i class="fa fa-external-link"></i></a>
             <br/>
 
             <p class="description" title="Description" 

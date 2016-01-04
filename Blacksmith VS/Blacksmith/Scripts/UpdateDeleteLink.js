@@ -86,7 +86,7 @@
     field.data("last-content", content);
     if (type === "address") {
       elem.find(".favicon").attr("src", "http://www.google.com/s2/favicons?domain_url=" + content);
-      elem.find(".visit-link").attr("title", "Visit " + content).attr("href", "" + (prependHttp(content)));
+      elem.find(".address a").attr("href", "" + (prependHttp(content)));
     }
     indicator.css("visibility", "visible");
     date = elem.find(".date.difference");
@@ -123,8 +123,9 @@
   };
 
   this.sendDelete = function() {
-    var article;
+    var article, id;
     article = $(event.currentTarget).parent("article");
+    id = article.attr("db-id");
     return $.ajax({
       url: "" + window.location.href + "&Action=Delete&id=" + id
     }).done(function() {

@@ -12,13 +12,17 @@ namespace Blacksmith
 {
     public partial class Link : Page
     {
-        private Models.Link _currentLink;
-        private User _currentUser;
+        protected Models.Link _currentLink;
+        protected User _currentUser;
         private ApplicationDbContext _db;
+
+        protected bool canEdit { get; private set; }
+        protected bool canDelete { get; private set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             FillInfo();
+            HandleRights();
             HandleAjax();
         }
 
@@ -37,6 +41,18 @@ namespace Blacksmith
 
         }
 
+        void HandleRights()
+        {
+            var db = ApplicationDbContext.Create();
+            var signedUser = db.Users.Find(User.Identity.GetUserId());
+
+            bool isLoggedUser = (_currentUser.UserName == signedUser.UserName);
+            bool isModerator = false;
+            
+            canEdit = isLoggedUser;
+            canDelete = isLoggedUser || isModerator;
+        }
+
         void HandleAjax()
         {
             var noValueParams = Request.QueryString[null];
@@ -47,7 +63,6 @@ namespace Blacksmith
 
         void ToggleFav()
         {
-            
             var favorite = _db.Favorites.SingleOrDefault(
                 f => f.User.Id == _currentUser.Id && f.Link.Id == _currentLink.Id);
                 
