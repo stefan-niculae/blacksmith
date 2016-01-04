@@ -18,5 +18,17 @@
   {
     "outputFile": "Scripts/Home.js",
     "inputFile": "Scripts/Home.coffee"
+  },
+  {
+    "outputFile": "Scripts/ToggleFavorites.js",
+    "inputFile": "Scripts/ToggleFavorites.coffee"
+  },
+  {
+    "outputFile": "Scripts/AddLink.js",
+    "inputFile": "Scripts/AddLink.coffee"
+  },
+  {
+    "outputFile": "Scripts/UpdateDeleteLink.js",
+    "inputFile": "Scripts/UpdateDeleteLink.coffee"
   }
 ]

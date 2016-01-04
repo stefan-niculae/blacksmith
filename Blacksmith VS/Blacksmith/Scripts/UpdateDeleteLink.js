@@ -15,7 +15,7 @@
   prepareArticle = function(article) {
     var editable, _i, _len, _ref, _results;
     convertDate(article.find(".date.difference"));
-    _ref = article.find("[contenteditable]");
+    _ref = article.find("[allows-edit]");
     _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       editable = _ref[_i];
@@ -98,7 +98,7 @@
     f = function() {
       return updateDB(type, content, id, indicator, date, field);
     };
-    return field.data("update-timeout", setTimeout(f, 2000));
+    return field.data("update-timeout", setTimeout(f, 1000));
   };
 
   this.prependHttp = function(link) {
@@ -122,33 +122,26 @@
     });
   };
 
-  this.sendInsert = function() {
-    var address, description, form, title;
-    form = $("#creation");
-    title = form.find(".title").text().trim();
-    address = form.find(".address").text().trim();
-    description = form.find(".description").text().trim();
-    console.log("url = " + window.location.href + "&Action=Insert&title=" + title + "&address=" + address + "&description=" + description);
-    return $("<div></div>").addClass("just-inserted").css("display", "none").insertAfter("#submitted h2").load("" + window.location.href + "&Action=Insert&title=" + title + "&address=" + address + "&description=" + description + " #submitted article:first", function() {
-      $(this).slideDown({
-        complete: function() {
-          return $(this).find("article").unwrap();
-        }
-      });
-      prepareArticle($(this));
-      return console.log("done inserting and loading!");
-    });
-  };
-
-  this.sendDelete = function(id) {
+  this.sendDelete = function() {
+    var article;
+    article = $(event.currentTarget).parent("article");
     return $.ajax({
       url: "" + window.location.href + "&Action=Delete&id=" + id
     }).done(function() {
-      $("[db-id='" + id + "']").slideUp();
+      article.slideUp();
       return console.log("done deleting!");
     });
   };
 
+  this.toggleEditable = function() {
+    var article, editable, notEditable;
+    article = $(event.currentTarget).parent("article");
+    editable = article.find("[allows-edit][contenteditable]");
+    notEditable = article.find("[allows-edit]:not([contenteditable])");
+    editable.removeAttr("contenteditable");
+    return notEditable.attr("contenteditable", "");
+  };
+
 }).call(this);
 
-//# sourceMappingURL=AddUpdateDeleteLink.js.map
+//# sourceMappingURL=UpdateDeleteLink.js.map

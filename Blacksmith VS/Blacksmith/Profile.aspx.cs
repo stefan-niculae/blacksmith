@@ -127,12 +127,13 @@ namespace Blacksmith
                     if (validation != null)
                     {
                         // Retrieve the error messages as a list of strings.
-                        var errorMessages = validation.EntityValidationErrors
+                        var errorMessages = string.Join("; ", 
+                            validation.EntityValidationErrors
                             .SelectMany(x => x.ValidationErrors)
-                            .Select(x => x.ErrorMessage);
+                            .Select(x => x.ErrorMessage));
 
                         // Combine the original exception message with the new one.
-                        DebugLogger.Log(" The validation errors are: " + string.Join("; ", errorMessages));
+                        DebugLogger.Log(" The validation errors are: " + errorMessages);
                     }
                 }
             }

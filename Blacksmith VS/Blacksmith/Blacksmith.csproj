@@ -191,20 +191,21 @@
     <Content Include="Images\favicon.ico" />
     <Content Include="Link.aspx" />
     <Content Include="Profile.aspx" />
-    <Content Include="Scripts\AddUpdateDeleteLink.js.map">
-      <DependentUpon>AddUpdateDeleteLink.js</DependentUpon>
+    <Content Include="Scripts\AddLink.js">
+      <DependentUpon>AddLink.coffee</DependentUpon>
     </Content>
-    <Content Include="Scripts\AddUpdateDeleteLink.js">
-      <DependentUpon>AddUpdateDeleteLink.coffee</DependentUpon>
-    </Content>
-    <Content Include="Scripts\AddUpdateDeleteLink.min.js">
-      <DependentUpon>AddUpdateDeleteLink.js</DependentUpon>
+    <Content Include="Scripts\AddLink.min.js">
+      <DependentUpon>AddLink.js</DependentUpon>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Home.coffee" />
     <Content Include="Scripts\Home.js.map">
       <DependentUpon>Home.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\AddLink.coffee" />
+    <Content Include="Scripts\AddLink.js.map">
+      <DependentUpon>AddLink.js</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\datatables.min.js" />
@@ -228,6 +229,18 @@
     </Content>
     <Content Include="Scripts\Search.min.js">
       <DependentUpon>Search.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\ToggleFavorites.js">
+      <DependentUpon>ToggleFavorites.coffee</DependentUpon>
+    </Content>
+    <Content Include="Scripts\ToggleFavorites.min.js">
+      <DependentUpon>ToggleFavorites.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\UpdateDeleteLink.js">
+      <DependentUpon>UpdateDeleteLink.coffee</DependentUpon>
+    </Content>
+    <Content Include="Scripts\UpdateDeleteLink.min.js">
+      <DependentUpon>UpdateDeleteLink.js</DependentUpon>
     </Content>
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
@@ -262,11 +275,18 @@
     <Content Include="packages.config" />
     <Content Include="Site.Mobile.Master" />
     <Content Include="Content\Style.scss" />
-    <Content Include="Scripts\AddUpdateDeleteLink.coffee" />
+    <Content Include="Scripts\UpdateDeleteLink.coffee" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
     <Content Include="Scripts\Search.coffee" />
     <Content Include="Scripts\Search.js.map">
       <DependentUpon>Search.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\ToggleFavorites.coffee" />
+    <Content Include="Scripts\ToggleFavorites.js.map">
+      <DependentUpon>ToggleFavorites.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\UpdateDeleteLink.js.map">
+      <DependentUpon>UpdateDeleteLink.js</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

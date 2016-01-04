@@ -1,6 +1,0 @@
-03-Jan-16 14:09:01: Exception on Insert of Links: Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
-03-Jan-16 14:09:01: Username = stefan, title = , addr = , desc = 
-03-Jan-16 14:09:01:  The validation errors are: The Title field is required.; The Address field is required.
-03-Jan-16 14:10:51: Exception on Insert of Links: Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
-03-Jan-16 14:10:51: Username = stefan, title = , addr = , desc = 
-03-Jan-16 14:10:51:  The validation errors are: The Title field is required.; The Address field is required.

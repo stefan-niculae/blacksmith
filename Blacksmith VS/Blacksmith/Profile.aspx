@@ -2,7 +2,8 @@
 
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
   <script src="/Scripts/moment.min.js"></script>
-  <script src="/Scripts/AddUpdateDeleteLink.min.js"></script>
+  <script src="/Scripts/UpdateDeleteLink.min.js"></script>
+  <script src="/Scripts/AddLink.min.js"></script>
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -66,7 +67,7 @@
             <%-- For each editable field, register it as the current when selected --%>
             <%-- so on deselect, we know which db entity to update --%>
             <h3 title="Title" class="title" 
-              <% if (canEdit) { %> contenteditable <% } %>
+              <% if (canEdit) { %> allows-edit <% } %>
               onfocus="registerFocus('<%# Item.Id %>', 'title')" 
               onkeyup="updateFocused()" onblur="updateFocused()">
               <%# Item.Title %>
@@ -76,7 +77,7 @@
             
             <img class="favicon" alt="Favicon" src="<%# Item.Favicon %>" title="Favicon"/>
             <span class="address" title="Address" 
-              <% if (canEdit) { %> contenteditable <% } %>
+              <% if (canEdit) { %> allows-edit <% } %>
               onfocus="registerFocus('<%# Item.Id %>', 'address')" 
               onkeyup="updateFocused()" onblur="updateFocused()">
             <%# Item.Address %>
@@ -85,7 +86,7 @@
             <br/>
 
             <p class="description" title="Description" 
-              <% if (canEdit) { %> contenteditable <% } %>
+              <% if (canEdit) { %> allows-edit <% } %>
               onfocus="registerFocus('<%# Item.Id %>', 'description')" 
               onkeyup="updateFocused()" onblur="updateFocused()">
               <%# Item.Description %>
@@ -95,10 +96,11 @@
             <div class="updating-wrapper">
               <span class="working-indicator"><i class="fa fa-circle-o-notch fa-spin"></i> Update pending</span>
             </div>
+            <button onclick="toggleEditable(); return false;" class="btn btn-info edit-button"><i class="fa fa-pencil"></i></button>
             <% } %>
             
             <% if (canDelete) { %>
-            <button onclick="sendDelete(<%# Item.Id %>); return false;" class="btn btn-danger delete-button"><i class="fa fa-trash"></i></button>
+            <button onclick="sendDelete(); return false;" class="btn btn-danger delete-button"><i class="fa fa-trash"></i></button>
             <% } %>
           </article>
 

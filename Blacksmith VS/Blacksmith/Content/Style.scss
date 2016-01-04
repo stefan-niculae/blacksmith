@@ -40,9 +40,6 @@
   .add-wrapper {
     margin: 20px auto;
     width: 7%;
-    .delete-button {
-      width: 100%;
-    }
   }
 }
 
@@ -76,13 +73,13 @@
     font-size: .95em;
   }
 
-  .delete-button {
+  .delete-button, .edit-button {
     visibility: hidden;
   }
 }
 
 .big-link:hover {
-  .delete-button {
+  .delete-button, .edit-button {
     visibility: visible;
   }
 }
@@ -96,4 +93,18 @@ footer {
   bottom: 1%;
   text-align: center;
   width: 100%;
+}
+
+
+#popular {
+  .fav-indicator.star {
+    .no-star {
+      display: none;
+    }  
+  }
+  .fav-indicator.no-star {
+    .star {
+      display: none;
+    }  
+  }
 }

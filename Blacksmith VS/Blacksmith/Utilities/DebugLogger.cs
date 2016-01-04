@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Web;
 
 namespace Blacksmith.Utilities
@@ -12,15 +10,8 @@ namespace Blacksmith.Utilities
 
         public static void Log(string message)
         {
-//            try
-//            {
-                using (var writer = new StreamWriter(LOG_PATH, append: true))
-                    writer.WriteLine($"{DateTime.Now}: {message}");
-//            }
-//            catch (Exception)
-//            {
-//                
-//            }
+            using (var writer = new StreamWriter(LOG_PATH, append: true))
+                writer.WriteLine($"{DateTime.Now}: {message}");
         }
     }
 }

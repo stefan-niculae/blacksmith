@@ -9,7 +9,7 @@ $ ->
 
 prepareArticle = (article) ->
   convertDate article.find ".date.difference"
-  for editable in article.find "[contenteditable]"
+  for editable in article.find "[allows-edit]"
     rememberInitialValue $ editable
     
 convertDates = () ->
@@ -30,8 +30,8 @@ rememberInitialValue = ($elem) ->
   $elem.data("original", value)
   $elem.data("db-cache", value)
   
+@focused
 
-@focused  
 @registerFocus = (id, type) ->
   @focused = { id: id, type: type }
   
@@ -79,11 +79,11 @@ rememberInitialValue = ($elem) ->
     .attr("abs-date", formattedDate)
     .attr("title", "Date updated: #{formattedDate}")
   
-  # Give the user a 2sec period from keystroke to keystroke before
+  # Give the user a 1sec period from keystroke to keystroke before
   # declaring the input finished and sending the update to the DB
   clearTimeout field.data("update-timeout") unless not field.data("update-timeout")
   f = () -> updateDB(type, content, id, indicator, date, field)
-  field.data("update-timeout", setTimeout f, 2000)
+  field.data("update-timeout", setTimeout f, 1000)
 
 @prependHttp = (link) ->
   toPrepend = "http://"
@@ -93,11 +93,11 @@ rememberInitialValue = ($elem) ->
   if start isnt toPrepend
     return toPrepend + link
   return link
-
+  
 @updateDB = (type, value, id, indicator, date, field) ->
   # TODO have a better way of inserting params into url, rather than hardcoding it this way
   # Send DB update parameters
-  $.ajax(url: "#{window.location.href}&Action=Update&field=#{type}&value=#{value}&id=#{id}")
+  $.ajax url: "#{window.location.href}&Action=Update&field=#{type}&value=#{value}&id=#{id}"
     .done ->
       # Update the new DB known value
       field.data("db-cache", value)
@@ -107,31 +107,20 @@ rememberInitialValue = ($elem) ->
       convertDate date
       console.log "done updating!"
       
-@sendInsert = () ->
-  form = $ "#creation"
-  title = form.find(".title").text().trim()
-  address = form.find(".address").text().trim()
-  description = form.find(".description").text().trim()
-  
-  console.log "url = #{window.location.href}&Action=Insert&title=#{title}&address=#{address}&description=#{description}"
-  
-  $ "<div></div>"
-    .addClass "just-inserted"
-    .css "display", "none"
-    .insertAfter "#submitted h2"
-    .load "#{window.location.href}&Action=Insert&title=#{title}&address=#{address}&description=#{description} #submitted article:first",  -> 
-      $ this
-        .slideDown
-          complete: ->
-            $ this
-              .find "article"
-              .unwrap()
-              
-      prepareArticle $ this
-      console.log "done inserting and loading!"
-      
-@sendDelete = (id) ->
-  $.ajax(url: "#{window.location.href}&Action=Delete&id=#{id}")
+@sendDelete = () ->
+  article = $(event.currentTarget).parent "article"
+  $.ajax url: "#{window.location.href}&Action=Delete&id=#{id}"
     .done ->
-      $("[db-id='#{id}']").slideUp()
+      article.slideUp()
       console.log "done deleting!"
+      
+@toggleEditable = () ->
+  article = $(event.currentTarget).parent "article"
+  
+  editable = article.find "[allows-edit][contenteditable]"
+  notEditable = article.find "[allows-edit]:not([contenteditable])"
+  
+  editable.removeAttr "contenteditable" # make them no longer editable
+  notEditable.attr "contenteditable", "" # make them editable
+  
+    

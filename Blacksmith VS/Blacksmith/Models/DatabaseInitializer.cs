@@ -112,12 +112,20 @@ namespace Blacksmith.Models
                 },
                 new Favorite
                 {
-                    Id = 1,
+                    Id = 2,
                     Category = "shopping",
                     Date = DateTime.Now.AddHours(-1),
                     Link = links[2],
                     User = stefan
                 },
+                new Favorite
+                {
+                    Id = 3,
+                    Category = "deals",
+                    Date = DateTime.Now.AddHours(-1),
+                    Link = links[1],
+                    User = ionut
+                }
             };
             context.Favorites.AddRange(favorites);
         }
