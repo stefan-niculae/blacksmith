@@ -33,7 +33,12 @@
               <%# Item.Submitter.UserName %> 
             </a>
 
-            <button onclick="sendToggle('<%# Item.Address %>'); return false;" 
+            <button 
+              <% if (User.Identity.IsAuthenticated) { %>
+                   onclick="sendToggle('<%# Item.Address %>'); return false;"
+              <% } else { %>
+                   onclick="window.location='/Account/Register'; return false;"
+              <% } %>
               class="btn btn-default favorite-button">
               <span class='fav-indicator <%# HasFavorited(Item.Id) ? "star" : "no-star" %>'>
                 <i class="fa fa-star star"></i>

@@ -13,38 +13,49 @@
 <%--      runat="server"></asp:Literal>,--%>
   
   <%-- TODO remove this (but keep the script and styling still apply--%>
+  <%
+    if(CurrentLink == null)
+    {
+  %>
+    <%--  TODO make this prettier --%>
+    no link address in url!
+  <% } 
+    else 
+    {
+  %>
   <section id="submitted">
-  <article class="big-link row" db-id=<%: _currentLink.Id %>>
+  <article class="big-link row" db-id=<%: CurrentLink.Id %>>
 
     <%-- For each editable field, register it as the current when selected --%>
     <%-- so on deselect, we know which db entity to update --%>
     <h3 title="Title" class="title" 
       <% if (canEdit) { %> allows-edit <% } %>
-      onfocus="registerFocus('<%: _currentLink.Id %>>', 'title')" 
+      onfocus="registerFocus('<%: CurrentLink.Id %>>', 'title')" 
       onkeyup="updateFocused()" onblur="updateFocused()">
-      <a href="Link?addr=<%: _currentLink.Address %>>">
-        <%: _currentLink.Title %>
+      <a href="Link?addr=<%: CurrentLink.Address %>>">
+        <%: CurrentLink.Title %>
       </a>
     </h3>
-    <span class="date difference" abs-date="<%: _currentLink.Date %>" title="Date submitted: <%: _currentLink.Date %>"><%: _currentLink.Date %></span>
+    <span class="date difference" abs-date="<%: CurrentLink.Date %>" title="Date submitted: <%: CurrentLink.Date %>"><%: CurrentLink.Date %></span>
     <br/>
             
-    <img class="favicon" alt="Favicon" src="<%: _currentLink.Favicon %>" title="Favicon"/>
+    <img class="favicon" alt="Favicon" src="<%: CurrentLink.Favicon %>" title="Favicon"/>
     <span class="address" title="Address" 
       <% if (canEdit) { %> allows-edit <% } %>
-      onfocus="registerFocus('<%: _currentLink.Id %>', 'address')" 
+      onfocus="registerFocus('<%: CurrentLink.Id %>', 'address')" 
       onkeyup="updateFocused()" onblur="updateFocused()">
-    <a href="http://<%: _currentLink.Address %>">
-      <%: _currentLink.Address %>
+    <a href="http://<%: CurrentLink.Address %>">
+      <%: CurrentLink.Address %>
     </a>
-    </span> 
+    </span>
+    <span class="submitter-name"><a href="Profile?user=<%: CurrentLink.Submitter.UserName %>"><%: CurrentLink.Submitter.UserName %></a></span>
     <br/>
-
+    
     <p class="description" title="Description" 
       <% if (canEdit) { %> allows-edit <% } %>
-      onfocus="registerFocus('<%: _currentLink.Id %>', 'description')" 
+      onfocus="registerFocus('<%: CurrentLink.Id %>', 'description')" 
       onkeyup="updateFocused()" onblur="updateFocused()">
-      <%: _currentLink.Description %>
+      <%: CurrentLink.Description %>
     </p>
             
     <% if (canEdit) { %>
@@ -61,9 +72,9 @@
   </section>
   
   <section id="comments">
-    <%: _currentLink.Comments.Count %> comment(s)
+    <%: CurrentLink.Comments.Count %> comment(s)
     <asp:Repeater runat="server"
-      DataSource="<%# _currentLink.Comments %>"
+      DataSource="<%# CurrentLink.Comments %>"
       ItemType="Blacksmith.Models.Comment">
       <ItemTemplate>
         <span class="content"><%# Item.Content %></span> 
@@ -72,6 +83,7 @@
       </ItemTemplate>
     </asp:Repeater>
   </section>
+  <% } %>
   
 <%--
   <asp:ListView runat="server"

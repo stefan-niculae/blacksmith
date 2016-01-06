@@ -1,9 +1,7 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.UI;
 using Blacksmith.Models;
 using System.Collections.Generic;
-using Blacksmith.Utilities;
 using Microsoft.AspNet.Identity;
 
 namespace Blacksmith
@@ -22,6 +20,7 @@ namespace Blacksmith
                 .Links.OrderByDescending(l => l.Favorites.Count);
         }
 
+        // TODO move this to a logic class and use it everywhere a link appears
         private List<int> _favoriteIds;
         public bool HasFavorited(int linkId)
         {

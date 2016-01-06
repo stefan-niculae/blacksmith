@@ -345,6 +345,7 @@
     <Compile Include="Link.aspx.designer.cs">
       <DependentUpon>Link.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Logic\LinkLogic.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\DatabaseHelper.cs" />

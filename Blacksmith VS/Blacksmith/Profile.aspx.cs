@@ -52,6 +52,10 @@ namespace Blacksmith
 
         void HandleRights()
         {
+            // No point in contiuning when noone is logged in
+            if (!User.Identity.IsAuthenticated)
+                return;
+
             var db = ApplicationDbContext.Create();
             var signedUser = db.Users.Find(User.Identity.GetUserId());
 
@@ -69,6 +73,12 @@ namespace Blacksmith
         void FillInfo()
         {
             Username = Request.QueryString["user"];
+
+            // If no username parameter was given
+            // Use the current logged in one
+            if (Username == null && User.Identity.IsAuthenticated)
+                Username = User.Identity.GetUserName();
+            // Unless there is noone logged in
         }
 
         void HandleAjax()
@@ -141,7 +151,8 @@ namespace Blacksmith
 
         public IQueryable<Models.Link> SubmittedLinks()
         {
-            if (string.IsNullOrEmpty(Request.QueryString["user"]))
+            // No parameter in URL given and noone logged in
+            if (Username == null)
                 return null;
 
             var db = ApplicationDbContext.Create();

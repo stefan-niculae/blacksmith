@@ -7,6 +7,17 @@
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+  
+  <%
+    if(Username == null)
+    {
+  %>
+    <%--  TODO make this prettier --%>
+    no username in url!
+  <% } 
+    else 
+    {
+  %>
   <h1><%: Username %></h1>
   
   
@@ -111,5 +122,6 @@
     </asp:ListView>
     
   </section>
-
+  
+  <% } %>
 </asp:Content>

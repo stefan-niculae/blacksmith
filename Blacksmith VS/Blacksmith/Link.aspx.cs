@@ -12,8 +12,8 @@ namespace Blacksmith
 {
     public partial class Link : Page
     {
-        protected Models.Link _currentLink;
-        protected User _currentUser;
+        protected Models.Link CurrentLink;
+        protected User CurrentUser;
         private ApplicationDbContext _db;
 
         protected bool canEdit { get; private set; }
@@ -33,20 +33,19 @@ namespace Blacksmith
            _db = ApplicationDbContext.Create();
             
             if (!string.IsNullOrEmpty(addr))
-                _currentLink = _db.Links.Single(l => l.Address == addr);
+                CurrentLink = _db.Links.Single(l => l.Address == addr);
 
             if (User.Identity.IsAuthenticated)
-                _currentUser = _db.Users.Find(User.Identity.GetUserId());
-            
-
+                CurrentUser = _db.Users.Find(User.Identity.GetUserId());
         }
 
         void HandleRights()
         {
-            var db = ApplicationDbContext.Create();
-            var signedUser = db.Users.Find(User.Identity.GetUserId());
+            // No point in contiuning when noone is logged in
+            if (!User.Identity.IsAuthenticated || CurrentLink == null)
+                return;
 
-            bool isLoggedUser = (_currentUser.UserName == signedUser.UserName);
+            bool isLoggedUser = (CurrentLink.Submitter.UserName == CurrentUser.UserName);
             bool isModerator = false;
             
             canEdit = isLoggedUser;
@@ -64,7 +63,7 @@ namespace Blacksmith
         void ToggleFav()
         {
             var favorite = _db.Favorites.SingleOrDefault(
-                f => f.User.Id == _currentUser.Id && f.Link.Id == _currentLink.Id);
+                f => f.User.Id == CurrentUser.Id && f.Link.Id == CurrentLink.Id);
                 
             // If it is already favorited, un-favorite it
             if (favorite != null)
@@ -73,8 +72,8 @@ namespace Blacksmith
             else
                 _db.Favorites.Add(new Favorite
                 {
-                    Link = _currentLink,
-                    User = _currentUser,
+                    Link = CurrentLink,
+                    User = CurrentUser,
                     Date = DateTime.Now,
                     Category = null
                 });
@@ -92,7 +91,7 @@ namespace Blacksmith
                         .Select(x => x.ErrorMessage));
 
                 DebugLogger.Log($"Error when {action}, " +
-                                $"User = {_currentUser.UserName}, Link = {_currentLink.Address} by {_currentLink.Submitter.UserName}, " +
+                                $"User = {CurrentUser.UserName}, Link = {CurrentLink.Address} by {CurrentLink.Submitter.UserName}, " +
                                 $"Validation errors = {errorMessages}");
             }
             
