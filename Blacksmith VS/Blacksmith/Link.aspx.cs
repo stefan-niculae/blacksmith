@@ -24,8 +24,8 @@ namespace Blacksmith
         {
             FillInfo();
             HandleRights();
-            BindData();
             HandleAjax();
+            BindData();
         }
 
         void FillInfo()
@@ -58,12 +58,15 @@ namespace Blacksmith
         {
             if (CurrentLink != null)
             {
-                CommentsList.DataSource = CurrentLink.Comments;
+                CommentsList.DataSource = CurrentLink.Comments
+                    .OrderBy(c => c.Date)
+                    .ToList(); // this conversion to list is needed because we can't bind queries through EF
                 CommentsList.DataBind();
 
                 CategoriesList.DataSource = _db.Favorites
                     .Where(f => f.Link.Id == CurrentLink.Id)
-                    .ToList(); // this conversion to list is needed because we can't bind queries through EF
+                    .Where(f => f.Category != null)
+                    .ToList(); 
                 CategoriesList.DataBind();
 
                 // TODO
@@ -78,6 +81,14 @@ namespace Blacksmith
 
             if (noValueParams != null && noValueParams.Contains("toggle-fav"))
                 ToggleFav();
+
+            string newComment = Request.QueryString["new-comm"];
+            if (newComment != null)
+                PostComment(newComment);
+
+            string deleteCommentId = Request.QueryString["del-comm"];
+            if (deleteCommentId != null)
+                DeleteComment(Convert.ToInt32(deleteCommentId));
         }
 
         void ToggleFav()
@@ -117,32 +128,60 @@ namespace Blacksmith
             
         }
 
-        // TODO change this to return to details view and use the member current link
-        public IQueryable<Models.Link> GetLink(
-            [QueryString("addr")] string addr
-            //, [RouteData] string address
-            )
+        void PostComment(string content)
         {
-//            loglabel.Text = $"id = {id}, address = {address}, is null = {string.IsNullOrEmpty(address)}; ceva value = {RouteData.Values["address"]}, ";
-//            foreach (var kv in RouteData.Values)
-//                loglabel.Text += kv.Key + " = " + kv.Value + ", ";
-
-            var db = ApplicationDbContext.Create();
-            
-            if (!string.IsNullOrEmpty(addr))
-                return db.Links.Where(l => l.Address == addr);
-
-//            if (string.IsNullOrEmpty(address))
-//                address = RouteData.Values["address"] as string;
-//
-//            if (!string.IsNullOrEmpty(address))
-//                return db.Links.Where(l => l.Address == address);
-
-//            DebugLogger.Log("found no suitable link by title " + address + "!");
-
-            // TODO redirect to homepage if no links where found (invalid addr)
-            //            Response.Redirect("Default");
-            return null;
+            _db.Comments.Add(new Comment
+            {
+                Content = content,
+                Date = DateTime.Now,
+                Submitter = CurrentUser,
+                Link = CurrentLink
+            });
+            _db.SaveChanges();
         }
+
+        void DeleteComment(int id)
+        {
+            var comment = _db.Comments.Find(id);
+            _db.Comments.Remove(comment);
+            _db.SaveChanges();
+        }
+
+        public bool CanDeleteComment(int commentId)
+        {
+            if (!User.Identity.IsAuthenticated)
+                return false;
+            
+            var comment = _db.Comments.Find(commentId);
+            return canDelete || comment.Submitter.Id == CurrentUser.Id;
+        }
+
+//        // TODO change this to return to details view and use the member current link
+//        public IQueryable<Models.Link> GetLink(
+//            [QueryString("addr")] string addr
+//            //, [RouteData] string address
+//            )
+//        {
+////            loglabel.Text = $"id = {id}, address = {address}, is null = {string.IsNullOrEmpty(address)}; ceva value = {RouteData.Values["address"]}, ";
+////            foreach (var kv in RouteData.Values)
+////                loglabel.Text += kv.Key + " = " + kv.Value + ", ";
+//
+//            var db = ApplicationDbContext.Create();
+//            
+//            if (!string.IsNullOrEmpty(addr))
+//                return db.Links.Where(l => l.Address == addr);
+//
+////            if (string.IsNullOrEmpty(address))
+////                address = RouteData.Values["address"] as string;
+////
+////            if (!string.IsNullOrEmpty(address))
+////                return db.Links.Where(l => l.Address == address);
+//
+////            DebugLogger.Log("found no suitable link by title " + address + "!");
+//
+//            // TODO redirect to homepage if no links where found (invalid addr)
+//            //            Response.Redirect("Default");
+//            return null;
+//        }
     }
 }

@@ -34,5 +34,13 @@
   {
     "outputFile": "Scripts/ConvertDatesShort.js",
     "inputFile": "Scripts/ConvertDatesShort.coffee"
+  },
+  {
+    "outputFile": "Scripts/AddDeleteComment.js",
+    "inputFile": "Scripts/AddDeleteComment.coffee"
+  },
+  {
+    "outputFile": "Scripts/ConvertDates.js",
+    "inputFile": "Scripts/ConvertDates.coffee"
   }
 ]

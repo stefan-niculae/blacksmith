@@ -11,17 +11,6 @@ prepareArticle = (article) ->
   convertDate article.find ".date.difference"
   for editable in article.find "[allows-edit]"
     rememberInitialValue $ editable
-    
-convertDates = () ->
-  #map `moment` format
-  for elem in $ ".date.difference"
-    convertDate $ elem
-    
-convertDate = ($elem) ->
-  # Convert dates from absolute time to distance from now
-  date = $elem.attr "abs-date"
-  distance = moment(date, "DD-MMM-YY HH:mm:ss").fromNow()
-  $elem.text(distance) unless distance is "Invalid date"
 
 rememberInitialValue = ($elem) ->
   # Save original value for undoing 

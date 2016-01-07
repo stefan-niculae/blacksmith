@@ -1,0 +1,7 @@
+07-Jan-16 18:07:52: in link handle ajax
+07-Jan-16 18:07:52: del comm id = 
+07-Jan-16 18:07:55: in link handle ajax
+07-Jan-16 18:07:55: del comm id = 38
+07-Jan-16 18:07:55: deleting with id = 38
+07-Jan-16 18:07:56: in link handle ajax
+07-Jan-16 18:07:56: del comm id = 

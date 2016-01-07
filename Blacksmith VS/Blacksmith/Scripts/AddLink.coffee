@@ -6,8 +6,6 @@
   address = form.find(".address").text().trim()
   description = form.find(".description").text().trim()
   
-  console.log "url = #{window.location.href}&Action=Insert&title=#{title}&address=#{address}&description=#{description}"
-  
   $ "<div></div>"
     .addClass "just-inserted"
     .css "display", "none"

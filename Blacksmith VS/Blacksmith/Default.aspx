@@ -2,7 +2,7 @@
 
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
   <script src="/Scripts/moment.min.js"></script>
-  <script src="/Scripts/ConvertDatesShort.min.js"></script>
+  <script src="/Scripts/ConvertDates.min.js"></script>
   <script src="/Scripts/ToggleFavorites.min.js"></script>
 </asp:Content>
 
@@ -34,6 +34,7 @@
             </a>
 
             <button 
+              <%-- TODO generalize this non-logged in protection --%>
               <% if (User.Identity.IsAuthenticated) { %>
                    onclick="sendToggle('<%# Item.Address %>'); return false;"
               <% } else { %>

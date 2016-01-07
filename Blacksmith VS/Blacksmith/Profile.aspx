@@ -2,6 +2,7 @@
 
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
   <script src="/Scripts/moment.min.js"></script>
+  <script src="/Scripts/ConvertDates.min.js"></script>
   <script src="/Scripts/UpdateDeleteLink.min.js"></script>
   <script src="/Scripts/AddLink.min.js"></script>
 </asp:Content>

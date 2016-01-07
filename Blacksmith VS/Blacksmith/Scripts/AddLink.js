@@ -6,7 +6,6 @@
     title = form.find(".title").text().trim();
     address = form.find(".address").text().trim();
     description = form.find(".description").text().trim();
-    console.log("url = " + window.location.href + "&Action=Insert&title=" + title + "&address=" + address + "&description=" + description);
     return $("<div></div>").addClass("just-inserted").css("display", "none").insertAfter("#submitted h2").load("" + window.location.href + "&Action=Insert&title=" + title + "&address=" + address + "&description=" + description + " #submitted article:first", function() {
       $(this).slideDown({
         complete: function() {

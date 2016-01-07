@@ -68,12 +68,13 @@
   .favicon {
     margin-right: .5em;
   }
-
-  .delete-button, .edit-button {
-    visibility: hidden;
-  }
 }
 
+.delete-button, .edit-button {
+    visibility: hidden;
+  }
+
+.comment:hover,
 .big-link:hover {
   .delete-button, .edit-button {
     visibility: visible;

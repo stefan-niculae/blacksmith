@@ -2,7 +2,9 @@
 
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
   <script src="/Scripts/moment.min.js"></script>
+  <script src="/Scripts/ConvertDates.min.js"></script>
   <script src="/Scripts/UpdateDeleteLink.min.js"></script>
+  <script src="/Scripts/AddDeleteComment.min.js"></script>
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -28,11 +30,11 @@
 
     <%-- For each editable field, register it as the current when selected --%>
     <%-- so on deselect, we know which db entity to update --%>
-    <h3 title="Title" class="title" 
+    <h3 title="Title" class="title"
       <% if (canEdit) { %> allows-edit <% } %>
       onfocus="registerFocus('<%: CurrentLink.Id %>>', 'title')" 
       onkeyup="updateFocused()" onblur="updateFocused()">
-      <a href="Link?addr=<%: CurrentLink.Address %>>">
+      <a href="Link?addr=<%: CurrentLink.Address %>">
         <%: CurrentLink.Title %>
       </a>
     </h3>
@@ -77,17 +79,30 @@
     <asp:ListView runat="server" ID="CommentsList"
       ItemType="Blacksmith.Models.Comment">
       <ItemTemplate>
-        <span class="submitter"><a href="Profile?user=<%# Item.Submitter.UserName %>"><%# Item.Submitter.UserName %></a></span>: <span class="content"><%# Item.Content %></span>
-        <br/>
+        <div class="comment" db-id="<%# Item.Id %>">
+          <span class="submitter"><a href="Profile?user=<%# Item.Submitter.UserName %>"><%# Item.Submitter.UserName %></a></span>: 
+          <span class="content"><%# Item.Content %></span>
+          @ <span class="date difference"><%# Item.Date %></span>
+          
+          <%# CanDeleteComment(Item.Id) ? "<button onclick='deleteComment(); return false;' class='btn btn-danger btn-sm delete-button'><i class='fa fa-trash'></i></button>" : "" %>
+        </div>
       </ItemTemplate>
       <EmptyDataTemplate>
         <span class="empty-data-text">This link has no comments</span>
       </EmptyDataTemplate>
     </asp:ListView>
     
-    <div id="new-comment-form">
-      <asp:TextBox ID="NewCommentBox" runat="server" Placeholder="New Comment"></asp:TextBox>
-      <asp:Button ID="NewCommentButton" runat="server" Text="Add" CssClass="btn btn-success"/>
+    <div id="new-comment-form" class="form-group form-inline">
+      <asp:TextBox ID="NewCommentBox" runat="server" Placeholder="New Comment" CssClass="form-control"></asp:TextBox>
+      <button class="btn btn-success"
+        <% if (User.Identity.IsAuthenticated) { %>
+              onclick="addComment(); return false;"
+        <% } else { %>
+              onclick="window.location='/Account/Register'; return false;"
+        <% } %>
+        >
+        Add
+      </button>
     </div>
 
   </section>
@@ -124,36 +139,4 @@
   </section>
 
   <% } %>
-  
-<%--
-  <asp:ListView runat="server"
-    ItemType="Blacksmith.Models.Link"
-    SelectMethod="GetLink">
-    
-    <ItemTemplate>
-      title: <%# Item.Title %>
-      <br/>
-      address: <%# Item.Address %>
-      <br/>
-      description: <%# Item.Description %>
-      <br/>
-      link submitter: <%# Item.Submitter.UserName %>
-      <br/>
-      comments: <%# Item.Comments.Count %>
-      <br/>
-      <asp:Repeater runat="server"
-        DataSource="<%# Item.Comments %>"
-        ItemType="Blacksmith.Models.Comment">
-        <ItemTemplate>
-          <%# Item.Content %> by <%# Item.Submitter.UserName %>
-          <br/>
-        </ItemTemplate>
-      </asp:Repeater>
-      <br/>
-
-    </ItemTemplate>
-    
-  </asp:ListView>
-  --%>
-
 </asp:Content>

@@ -191,6 +191,12 @@
     <Content Include="Images\favicon.ico" />
     <Content Include="Link.aspx" />
     <Content Include="Profile.aspx" />
+    <Content Include="Scripts\AddDeleteComment.js">
+      <DependentUpon>AddDeleteComment.coffee</DependentUpon>
+    </Content>
+    <Content Include="Scripts\AddDeleteComment.min.js">
+      <DependentUpon>AddDeleteComment.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\AddLink.js">
       <DependentUpon>AddLink.coffee</DependentUpon>
     </Content>
@@ -199,19 +205,23 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\ConvertDatesShort.coffee" />
-    <Content Include="Scripts\ConvertDatesShort.js">
-      <DependentUpon>ConvertDatesShort.coffee</DependentUpon>
+    <Content Include="Scripts\ConvertDates.coffee" />
+    <Content Include="Scripts\ConvertDates.js">
+      <DependentUpon>ConvertDates.coffee</DependentUpon>
     </Content>
-    <Content Include="Scripts\ConvertDatesShort.min.js">
-      <DependentUpon>ConvertDatesShort.js</DependentUpon>
+    <Content Include="Scripts\ConvertDates.min.js">
+      <DependentUpon>ConvertDates.js</DependentUpon>
     </Content>
     <Content Include="Scripts\AddLink.coffee" />
     <Content Include="Scripts\AddLink.js.map">
       <DependentUpon>AddLink.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\ConvertDatesShort.js.map">
-      <DependentUpon>ConvertDatesShort.js</DependentUpon>
+    <Content Include="Scripts\AddDeleteComment.coffee" />
+    <Content Include="Scripts\AddDeleteComment.js.map">
+      <DependentUpon>AddDeleteComment.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\ConvertDates.js.map">
+      <DependentUpon>ConvertDates.js</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\datatables.min.js" />
