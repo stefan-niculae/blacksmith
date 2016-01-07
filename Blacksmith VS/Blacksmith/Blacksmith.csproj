@@ -199,22 +199,22 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\Home.coffee" />
-    <Content Include="Scripts\Home.js.map">
-      <DependentUpon>Home.js</DependentUpon>
+    <Content Include="Scripts\ConvertDatesShort.coffee" />
+    <Content Include="Scripts\ConvertDatesShort.js">
+      <DependentUpon>ConvertDatesShort.coffee</DependentUpon>
+    </Content>
+    <Content Include="Scripts\ConvertDatesShort.min.js">
+      <DependentUpon>ConvertDatesShort.js</DependentUpon>
     </Content>
     <Content Include="Scripts\AddLink.coffee" />
     <Content Include="Scripts\AddLink.js.map">
       <DependentUpon>AddLink.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\ConvertDatesShort.js.map">
+      <DependentUpon>ConvertDatesShort.js</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\datatables.min.js" />
-    <Content Include="Scripts\Home.js">
-      <DependentUpon>Home.coffee</DependentUpon>
-    </Content>
-    <Content Include="Scripts\Home.min.js">
-      <DependentUpon>Home.js</DependentUpon>
-    </Content>
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />

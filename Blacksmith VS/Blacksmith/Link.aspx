@@ -72,17 +72,57 @@
   </section>
   
   <section id="comments">
-    <%: CurrentLink.Comments.Count %> comment(s)
-    <asp:Repeater runat="server"
-      DataSource="<%# CurrentLink.Comments %>"
+    <h2>Comments</h2>
+
+    <asp:ListView runat="server" ID="CommentsList"
       ItemType="Blacksmith.Models.Comment">
       <ItemTemplate>
-        <span class="content"><%# Item.Content %></span> 
-        by <span class="submitter"><a href="Profile?user=<%# Item.Submitter.UserName %>"><%# Item.Submitter.UserName %></a></span>
+        <span class="submitter"><a href="Profile?user=<%# Item.Submitter.UserName %>"><%# Item.Submitter.UserName %></a></span>: <span class="content"><%# Item.Content %></span>
         <br/>
       </ItemTemplate>
-    </asp:Repeater>
+      <EmptyDataTemplate>
+        <span class="empty-data-text">This link has no comments</span>
+      </EmptyDataTemplate>
+    </asp:ListView>
+    
+    <div id="new-comment-form">
+      <asp:TextBox ID="NewCommentBox" runat="server" Placeholder="New Comment"></asp:TextBox>
+      <asp:Button ID="NewCommentButton" runat="server" Text="Add" CssClass="btn btn-success"/>
+    </div>
+
   </section>
+  
+  <section id="categories">
+    <h2>Categories</h2>
+    
+    <asp:ListView runat="server" ID="CategoriesList"
+      ItemType="Blacksmith.Models.Favorite">
+      <ItemTemplate>
+        <span class="category"><%# Item.Category %></span>
+        <br/>
+      </ItemTemplate>
+      <EmptyDataTemplate>
+        <span class="empty-data-text">This link is not saved in any category</span>
+      </EmptyDataTemplate>
+    </asp:ListView>
+  </section>
+  
+  <section id="similars">
+    <h2>Similar Links</h2>
+    
+    <asp:ListView runat="server" ID="SimilarsList"
+      ItemType="Blacksmith.Models.Link">
+      <ItemTemplate>
+        <span class="similar"><%# Item.Address %></span>
+        <br/>
+      </ItemTemplate>
+      <EmptyDataTemplate>
+        <span class="empty-data-text">This link has no similar pages submitted</span>
+      </EmptyDataTemplate>
+    </asp:ListView>
+
+  </section>
+
   <% } %>
   
 <%--

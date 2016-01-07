@@ -1,10 +1,10 @@
 ﻿# CoffeeScript
 
 $ ->
-  convertDates()
+  convertDatesShort()
   
-convertDates = () ->
-  for elem in $ "#recent .date"
+convertDatesShort = () ->
+  for elem in $ ".date.short-diff"
     $elem = $ elem
     original = $elem.text()
     

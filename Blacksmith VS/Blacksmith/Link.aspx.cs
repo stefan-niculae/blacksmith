@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace Blacksmith
         {
             FillInfo();
             HandleRights();
+            BindData();
             HandleAjax();
         }
 
@@ -50,6 +52,24 @@ namespace Blacksmith
             
             canEdit = isLoggedUser;
             canDelete = isLoggedUser || isModerator;
+        }
+
+        void BindData()
+        {
+            if (CurrentLink != null)
+            {
+                CommentsList.DataSource = CurrentLink.Comments;
+                CommentsList.DataBind();
+
+                CategoriesList.DataSource = _db.Favorites
+                    .Where(f => f.Link.Id == CurrentLink.Id)
+                    .ToList(); // this conversion to list is needed because we can't bind queries through EF
+                CategoriesList.DataBind();
+
+                // TODO
+                SimilarsList.DataSource = new List<Link>();
+                SimilarsList.DataBind();
+            }
         }
 
         void HandleAjax()

@@ -2,7 +2,7 @@
 
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
   <script src="/Scripts/moment.min.js"></script>
-  <script src="/Scripts/Home.min.js"></script>
+  <script src="/Scripts/ConvertDatesShort.min.js"></script>
   <script src="/Scripts/ToggleFavorites.min.js"></script>
 </asp:Content>
 
@@ -71,7 +71,7 @@
               <a href="Profile?user=<%# Item.Submitter.UserName %>">
                 <%# Item.Submitter.UserName %> 
               </a>
-              <i class="fa fa-clock-o"></i> <span class="date" title="Date submitted: <%# Item.Date %>"><%# Item.Date %></span>
+              <i class="fa fa-clock-o"></i> <span class="date short-diff" title="Date submitted: <%# Item.Date %>"><%# Item.Date %></span>
               <%--<img src="<%#: Item.Thumbnail %>" alt="Thumbnail"/>--%>
               <br />
             </article>
