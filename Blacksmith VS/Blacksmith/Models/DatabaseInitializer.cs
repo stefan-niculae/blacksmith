@@ -22,21 +22,47 @@ namespace Blacksmith.Models
                 Email = "ionut@email.com",
                 UserName = "ionut",
             };
+            var admin = new User
+            {
+                Email = "admin@email.com",
+                UserName = "administrator"
+            };
 
-            var manager = new UserManager<User>(new UserStore<User>(context));
+            var userManager = new UserManager<User>(new UserStore<User>(context));
             
-            var result = manager.Create(stefan, password: "Pa$$word1");
+            var result = userManager.Create(stefan, password: "Pa$$word1");
             if (!result.Succeeded)
                 DebugLogger.Log("stefan creation error: " + result.Errors.Aggregate("", (current, error) => current + error + "\n"));
             
-            result = manager.Create(ionut, password: "password");
+            result = userManager.Create(ionut, password: "password");
             if (!result.Succeeded)
                 DebugLogger.Log("ionut creation error: " + result.Errors.Aggregate("", (current, error) => current + error + "\n"));
-
+            result = userManager.Create(admin, password: "administrator");
+            if (!result.Succeeded)
+                DebugLogger.Log("admin account creation error: " + result.Errors.Aggregate("", (current, error) => current + error + "\n"));
 
             // Do this to assign the generated id
-            stefan = manager.FindByEmail(stefan.Email);
-            ionut = manager.FindByEmail(ionut.Email);
+            stefan = userManager.FindByEmail(stefan.Email);
+            ionut = userManager.FindByEmail(ionut.Email);
+            admin = userManager.FindByEmail(admin.Email);
+
+            var roleStore = new RoleStore<IdentityRole>(context);
+            var roleManager = new RoleManager<IdentityRole>(roleStore);
+
+            if (!roleManager.RoleExists("admin"))
+            {
+                var r = roleManager.Create(new IdentityRole("admin"));
+                if (!r.Succeeded)
+                    DebugLogger.Log("admin role creation error: " + result.Errors.Aggregate("", (current, error) => current + error + "\n"));
+            }
+
+            if (!userManager.IsInRole(admin.Id, "admin"))
+            {
+                var r = userManager.AddToRole(admin.Id, "admin");
+                if (!r.Succeeded)
+                    DebugLogger.Log("admin role assignment error: " + result.Errors.Aggregate("", (current, error) => current + error + "\n"));
+            }
+
 
             var links = new List<Link>
             {

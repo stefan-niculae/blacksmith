@@ -1,13 +1,26 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.UI;
 using Blacksmith.Models;
 using System.Collections.Generic;
+using System.Web;
 using Microsoft.AspNet.Identity;
 
 namespace Blacksmith
 {
     public partial class _Default : Page
     {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            // Log out the signed user if their id is not found in the database
+            // protection for residual logged users from previous databases
+            string loggedId = User.Identity.GetUserId();
+            var user = ApplicationDbContext.Create()
+                .Users.Find(loggedId);
+            if (user == null)
+                HttpContext.Current.Session.Abandon();
+        }
+
         public IQueryable<Models.Link> RecentLinks()
         {
             return ApplicationDbContext.Create()

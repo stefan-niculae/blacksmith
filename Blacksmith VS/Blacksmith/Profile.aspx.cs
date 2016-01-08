@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 using Blacksmith.Models;
 using Blacksmith.Utilities;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.BuilderProperties;
 
 namespace Blacksmith
@@ -18,6 +19,7 @@ namespace Blacksmith
         protected bool canAdd { get; private set; }
         protected bool canEdit { get; private set; }
         protected bool canDelete { get; private set; }
+        protected bool isModerator { get; private set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -59,8 +61,10 @@ namespace Blacksmith
             var db = ApplicationDbContext.Create();
             var signedUser = db.Users.Find(User.Identity.GetUserId());
 
+            var userManager = new UserManager<User>(new UserStore<User>(db));
+
             bool isLoggedUser = (Username == signedUser.UserName);
-            bool isModerator = false;
+            isModerator = userManager.IsInRole(signedUser.Id, "admin"); ;
 
             canAdd = isLoggedUser;
             canEdit = isLoggedUser;

@@ -40,7 +40,7 @@
               <% } else { %>
                    onclick="window.location='/Account/Register'; return false;"
               <% } %>
-              class="btn btn-default favorite-button">
+              class="btn btn-default btn-xs favorite-button">
               <span class='fav-indicator <%# HasFavorited(Item.Id) ? "star" : "no-star" %>'>
                 <i class="fa fa-star star"></i>
                 <i class="fa fa-star-o no-star"></i>

@@ -6,6 +6,7 @@ using System.Web.UI;
 using Blacksmith.Models;
 using Blacksmith.Utilities;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Blacksmith
 {
@@ -45,8 +46,10 @@ namespace Blacksmith
             if (!User.Identity.IsAuthenticated || CurrentLink == null)
                 return;
 
+            var userManager = new UserManager<User>(new UserStore<User>(_db));
+
             bool isLoggedUser = (CurrentLink.Submitter.UserName == CurrentUser.UserName);
-            bool isModerator = false;
+            bool isModerator = userManager.IsInRole(CurrentUser.Id, "admin");
             
             canEdit = isLoggedUser;
             canDelete = isLoggedUser || isModerator;

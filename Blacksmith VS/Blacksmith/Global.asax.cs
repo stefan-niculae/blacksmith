@@ -19,12 +19,15 @@ namespace Blacksmith
             Database.SetInitializer(new DatabaseInitializer());
 
             // Add custom routes
-//            RouteTable.Routes.Clear();
             RegisterRoutes(RouteTable.Routes);
         }
 
         void RegisterRoutes(RouteCollection routes)
         {
+            // FIXME doesn't work
+
+            // routes.Clear();
+
             routes.MapPageRoute(
                 "LinkByAddress",
                 "Link/{address}",

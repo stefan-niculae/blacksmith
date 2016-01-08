@@ -19,7 +19,11 @@
     else 
     {
   %>
-  <h1><%: Username %></h1>
+  <h1><%: Username %>
+    <% if (isModerator) { %>
+      <span id="moderator-indicator" title="User is moderator"><i class="fa fa-shield"></i></span>
+    <% } %>
+  </h1>
   
   
   <asp:PlaceHolder runat="server" ID="successMessage" Visible="false" ViewStateMode="Disabled">
