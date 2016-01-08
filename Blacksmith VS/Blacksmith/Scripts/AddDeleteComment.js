@@ -8,9 +8,7 @@
       return;
     }
     return $.get("" + window.location.href + "&new-comm=" + content, function(data) {
-      var newComments;
-      newComments = $(data).find("#comments");
-      $("#comments").replaceWith(newComments);
+      $(data).find("#comments-list .comment:last").css("display", "none").appendTo($("#comments-list")).slideDown("fast");
       return console.log("done posting comment " + content);
     });
   };

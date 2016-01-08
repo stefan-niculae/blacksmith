@@ -19,7 +19,6 @@
     <EmptyDataTemplate>
       No results found
     </EmptyDataTemplate>
-
     
     <LayoutTemplate>
       <table id="search-results" class="table table-hover">

@@ -75,22 +75,24 @@
   
   <section id="comments">
     <h2>Comments</h2>
-
-    <asp:ListView runat="server" ID="CommentsList"
-      ItemType="Blacksmith.Models.Comment">
-      <ItemTemplate>
-        <div class="comment" db-id="<%# Item.Id %>">
-          <span class="submitter"><a href="Profile?user=<%# Item.Submitter.UserName %>"><%# Item.Submitter.UserName %></a></span>: 
-          <span class="content"><%# Item.Content %></span>
-          @ <span class="date difference"><%# Item.Date %></span>
+    
+    <div id="comments-list">
+      <asp:ListView runat="server" ID="CommentsList"
+        ItemType="Blacksmith.Models.Comment">
+        <ItemTemplate>
+          <div class="comment" db-id="<%# Item.Id %>">
+            <span class="submitter"><a href="Profile?user=<%# Item.Submitter.UserName %>"><%# Item.Submitter.UserName %></a></span>: 
+            <span class="content"><%# Item.Content %></span>
+            @ <span class="date difference"><%# Item.Date %></span>
           
-          <%# CanDeleteComment(Item.Id) ? "<button onclick='deleteComment(); return false;' class='btn btn-danger btn-sm delete-button'><i class='fa fa-trash'></i></button>" : "" %>
-        </div>
-      </ItemTemplate>
-      <EmptyDataTemplate>
-        <span class="empty-data-text">This link has no comments</span>
-      </EmptyDataTemplate>
-    </asp:ListView>
+            <%# CanDeleteComment(Item.Id) ? "<button onclick='deleteComment(); return false;' class='btn btn-danger btn-sm delete-button'><i class='fa fa-trash'></i></button>" : "" %>
+          </div>
+        </ItemTemplate>
+        <EmptyDataTemplate>
+          <span class="empty-data-text">This link has no comments</span>
+        </EmptyDataTemplate>
+      </asp:ListView>
+    </div>
     
     <div id="new-comment-form" class="form-group form-inline">
       <asp:TextBox ID="NewCommentBox" runat="server" Placeholder="New Comment" CssClass="form-control"></asp:TextBox>

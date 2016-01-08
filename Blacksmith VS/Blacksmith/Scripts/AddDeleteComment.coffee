@@ -8,8 +8,11 @@
     return
     
   $.get "#{window.location.href}&new-comm=#{content}", (data) ->
-    newComments = $(data).find "#comments"
-    $("#comments").replaceWith newComments
+    $(data).find "#comments-list .comment:last"
+      .css "display", "none"
+      .appendTo $ "#comments-list"
+      .slideDown("fast")
+      
     console.log "done posting comment #{content}"
     
 @deleteComment = () ->
