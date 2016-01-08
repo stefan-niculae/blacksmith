@@ -9,7 +9,7 @@ $ ->
 
 prepareArticle = (article) ->
   convertDate article.find ".date.difference"
-  for editable in article.find "[allows-edit]"
+  for editable in article.find "[allows-edit], .category[contenteditable]"
     rememberInitialValue $ editable
 
 rememberInitialValue = ($elem) ->
@@ -28,12 +28,13 @@ rememberInitialValue = ($elem) ->
   id = @focused.id;
   type = @focused.type
   
-  if type not in ["title", "address", "description"]
+  if type not in ["title", "address", "description", "category"]
     console.error "Invalid focused type: #{type}"
     return
     
-  elem = $ "[db-id='#{id}']"
-  field = elem.find ".#{type}"
+  elem =  $ "[db-id='#{id}']"
+  # HACK
+  field = if type isnt "category" then elem.find ".#{type}" else $ ".category"
   content = field.text().trim()
   indicator = elem.find '.working-indicator'
   
@@ -50,7 +51,7 @@ rememberInitialValue = ($elem) ->
     return
   field.data "last-content", content
   
-  # When updating the address, also update the favicon and the visit link
+  # When updating the address, also update the favicon and the link
   if type is "address"
     elem.find ".favicon"
       .attr "src", "http://www.google.com/s2/favicons?domain_url=#{content}"
@@ -62,11 +63,12 @@ rememberInitialValue = ($elem) ->
   indicator.css "visibility", "visible" 
   
   # Update the date
-  date = elem.find ".date.difference"
-  formattedDate = moment().format "DD-MMM-YY HH:mm:ss"
-  date
-    .attr "abs-date", formattedDate
-    .attr "title", "Date updated: #{formattedDate}"
+  if type isnt "category"
+    date = elem.find ".date.difference"
+    formattedDate = moment().format "DD-MMM-YY HH:mm:ss"
+    date
+      .attr "abs-date", formattedDate
+      .attr "title", "Date updated: #{formattedDate}"
   
   # Give the user a 1sec period from keystroke to keystroke before
   # declaring the input finished and sending the update to the DB
@@ -86,6 +88,7 @@ rememberInitialValue = ($elem) ->
 @updateDB = (type, value, id, indicator, date, field) ->
   # TODO have a better way of inserting params into url, rather than hardcoding it this way
   # Send DB update parameters
+  # FIXME don't redirect to window.location.href, instead to link directly or something!
   $.ajax url: "#{window.location.href}&Action=Update&field=#{type}&value=#{value}&id=#{id}"
     .done ->
       # Update the new DB known value
@@ -93,8 +96,9 @@ rememberInitialValue = ($elem) ->
       # Remove the pending update indicator
       indicator.css "visibility", "hidden"
       # Update the date distance
-      convertDate date
-      console.log "done updating!"
+      if type isnt "category"
+        convertDate date
+      console.log "done updating! #{type} to #{value}"
       
 @sendDelete = () ->
   article = $(event.currentTarget).parent "article"

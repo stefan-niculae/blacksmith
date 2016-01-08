@@ -15,7 +15,7 @@
   prepareArticle = function(article) {
     var editable, _i, _len, _ref, _results;
     convertDate(article.find(".date.difference"));
-    _ref = article.find("[allows-edit]");
+    _ref = article.find("[allows-edit], .category[contenteditable]");
     _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       editable = _ref[_i];
@@ -44,12 +44,12 @@
     var content, date, elem, f, field, formattedDate, id, indicator, lastContent, type;
     id = this.focused.id;
     type = this.focused.type;
-    if (type !== "title" && type !== "address" && type !== "description") {
+    if (type !== "title" && type !== "address" && type !== "description" && type !== "category") {
       console.error("Invalid focused type: " + type);
       return;
     }
     elem = $("[db-id='" + id + "']");
-    field = elem.find("." + type);
+    field = type !== "category" ? elem.find("." + type) : $(".category");
     content = field.text().trim();
     indicator = elem.find('.working-indicator');
     lastContent = field.data("last-content");
@@ -69,9 +69,11 @@
       elem.find(".address a").attr("href", "" + (prependHttp(content)));
     }
     indicator.css("visibility", "visible");
-    date = elem.find(".date.difference");
-    formattedDate = moment().format("DD-MMM-YY HH:mm:ss");
-    date.attr("abs-date", formattedDate).attr("title", "Date updated: " + formattedDate);
+    if (type !== "category") {
+      date = elem.find(".date.difference");
+      formattedDate = moment().format("DD-MMM-YY HH:mm:ss");
+      date.attr("abs-date", formattedDate).attr("title", "Date updated: " + formattedDate);
+    }
     if (!!field.data("update-timeout")) {
       clearTimeout(field.data("update-timeout"));
     }
@@ -97,8 +99,10 @@
     }).done(function() {
       field.data("db-cache", value);
       indicator.css("visibility", "hidden");
-      convertDate(date);
-      return console.log("done updating!");
+      if (type !== "category") {
+        convertDate(date);
+      }
+      return console.log("done updating! " + type + " to " + value);
     });
   };
 

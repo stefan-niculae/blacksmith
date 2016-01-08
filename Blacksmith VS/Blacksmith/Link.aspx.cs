@@ -16,6 +16,23 @@ namespace Blacksmith
         protected User CurrentUser;
         private ApplicationDbContext _db;
 
+        private Favorite _currentFavorite;
+        protected Favorite CurrentFavorite
+        {
+            get
+            {
+                if (!User.Identity.IsAuthenticated)
+                    return null;
+
+                // Cache it
+                if (_currentFavorite == null)
+                    _currentFavorite = _db.Favorites
+                        .SingleOrDefault(f => f.Link.Id == CurrentLink.Id && f.User.Id == CurrentUser.Id);
+
+                return _currentFavorite;
+            }
+        }
+
         protected bool canEdit { get; private set; }
         protected bool canDelete { get; private set; }
 
@@ -90,6 +107,22 @@ namespace Blacksmith
             string deleteCommentId = Request.QueryString["del-comm"];
             if (deleteCommentId != null)
                 DeleteComment(Convert.ToInt32(deleteCommentId));
+
+            string action = Request.QueryString["Action"];
+            if (action != null && action == "Update")
+            {
+                string field = Request.QueryString["field"];
+                if (field == "category")
+                    UpdateCategory(Request.QueryString["value"]);
+            }
+        }
+
+        void UpdateCategory(string value)
+        {
+            var favorite = _db.Favorites.Single(
+                 f => f.User.Id == CurrentUser.Id && f.Link.Id == CurrentLink.Id);
+            favorite.Category = value;
+            _db.SaveChanges();
         }
 
         void ToggleFav()
@@ -156,6 +189,20 @@ namespace Blacksmith
             var comment = _db.Comments.Find(commentId);
             return canDelete || comment.Submitter.Id == CurrentUser.Id;
         }
+
+//        public string FavoriteCategory()
+//        {
+//            DebugLogger.Log("inside user favorite");
+//            if (!User.Identity.IsAuthenticated)
+//                return null;
+//
+//            var fav = _db.Favorites
+//                .SingleOrDefault(f => f.Link.Id == CurrentLink.Id && f.User.Id == CurrentUser.Id);
+//
+//            DebugLogger.Log($"inside link get user favorite, it is null = {fav == null}");
+//
+//            return fav?.Category;
+//        }
 
 //        // TODO change this to return to details view and use the member current link
 //        public IQueryable<Models.Link> GetLink(

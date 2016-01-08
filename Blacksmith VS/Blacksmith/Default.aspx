@@ -32,8 +32,9 @@
             <a href="Profile?user=<%# Item.Submitter.UserName %>">
               <%# Item.Submitter.UserName %> 
             </a>
-
-            <button 
+            
+            <%--TODO add favorite category as a mouseover title--%>
+            <button
               <%-- TODO generalize this non-logged in protection --%>
               <% if (User.Identity.IsAuthenticated) { %>
                    onclick="sendToggle('<%# Item.Address %>'); return false;"

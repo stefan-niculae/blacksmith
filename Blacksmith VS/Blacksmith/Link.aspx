@@ -1,10 +1,12 @@
 ﻿<%@ Page Title="Link" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Link.aspx.cs" Inherits="Blacksmith.Link" %>
+<%@ Import Namespace="System.ComponentModel" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="HeadContent">
   <script src="/Scripts/moment.min.js"></script>
   <script src="/Scripts/ConvertDates.min.js"></script>
   <script src="/Scripts/UpdateDeleteLink.min.js"></script>
   <script src="/Scripts/AddDeleteComment.min.js"></script>
+  <script src="/Scripts/ToggleFavorites.min.js"></script>
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -25,9 +27,10 @@
     else 
     {
   %>
+  
   <section id="submitted">
   <article class="big-link row" db-id=<%: CurrentLink.Id %>>
-
+    
     <%-- For each editable field, register it as the current when selected --%>
     <%-- so on deselect, we know which db entity to update --%>
     <h3 title="Title" class="title"
@@ -59,6 +62,33 @@
       onkeyup="updateFocused()" onblur="updateFocused()">
       <%: CurrentLink.Description %>
     </p>
+    
+    <div id="favorite-category">
+      <button
+        <%-- TODO generalize this non-logged in protection --%>
+      
+        <% if (User.Identity.IsAuthenticated) { %>
+              onclick="sendToggle('<%: CurrentLink.Address %>'); return false;"
+        <% } else { %>
+              onclick="window.location='/Account/Register'; return false;"
+        <% } %>
+        class="btn btn-default btn-xs favorite-button">
+        <span class='fav-indicator <%: CurrentFavorite != null ? "star" : "no-star" %>'>
+          <i class="fa fa-star star"></i>
+          <i class="fa fa-star-o no-star"></i>
+        </span>
+        <span class="fav-count"><%: CurrentLink.Favorites.Count %></span>
+      </button>
+      <span title="Category" class="category"
+        contenteditable
+        onfocus="registerFocus('<%: CurrentFavorite == null ? -1 : CurrentFavorite.Id %>', 'category')" 
+        onkeyup="updateFocused()" onblur="updateFocused()"
+        <% if (CurrentFavorite == null) { %> hidden <% } %>>
+        <%: CurrentFavorite != null ? (CurrentFavorite.Category ?? "uncategorized") : "" %>
+      </span>
+    </div>
+    
+    <br/>
             
     <% if (canEdit) { %>
     <div class="updating-wrapper">
@@ -115,7 +145,7 @@
     <asp:ListView runat="server" ID="CategoriesList"
       ItemType="Blacksmith.Models.Favorite">
       <ItemTemplate>
-        <span class="category"><%# Item.Category %></span>
+        <span class="others-category"><%# Item.Category %></span>
         <br/>
       </ItemTemplate>
       <EmptyDataTemplate>

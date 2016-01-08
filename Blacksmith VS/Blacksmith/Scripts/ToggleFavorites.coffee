@@ -8,7 +8,6 @@
       visuallyToggle elem
         
 visuallyToggle = (elem) ->
-  
   indicator = elem.find ".fav-indicator"
   count = elem.find ".fav-count"
   isFavorited = indicator.hasClass "star"
@@ -21,3 +20,12 @@ visuallyToggle = (elem) ->
     indicator.addClass "star"
     indicator.removeClass "no-star"
     count.text(+count.text() + 1)
+    
+  toggleCategoryName elem.siblings(".category"), isFavorited
+    
+toggleCategoryName = (name, isFavorited) ->
+  if not isFavorited
+    name.removeAttr "hidden"
+    name.text "uncategorized"
+  else
+    name.attr "hidden", ""

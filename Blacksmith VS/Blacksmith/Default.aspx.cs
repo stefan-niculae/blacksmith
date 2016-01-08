@@ -34,7 +34,7 @@ namespace Blacksmith
         }
 
         // TODO move this to a logic class and use it everywhere a link appears
-        private List<int> _favoriteIds;
+        private HashSet<int> _favoriteIds;
         public bool HasFavorited(int linkId)
         {
             // All links are not-favorited by unauthenticated users
@@ -48,7 +48,7 @@ namespace Blacksmith
                 var favorites = ApplicationDbContext.Create()
                     .Users.Find(userId).Favorites;
 
-                _favoriteIds = new List<int>();
+                _favoriteIds = new HashSet<int>();
                 foreach (var favorite in favorites)
                     _favoriteIds.Add(favorite.Link.Id);
             }
