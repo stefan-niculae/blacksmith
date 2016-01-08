@@ -48,7 +48,7 @@
         <td><%# Item.Comments.Count %></td>
         <td class="date short-diff" abs-date="<%# Item.Date %>"><%# Item.Date %></td>
         <td><%# Item.Favorites.Count %> </td>
-        <td> TODO </td>
+        <td><%# string.Join(", ", Item.Favorites.Select(f => f.Category)) %> </td>
       </tr>
     </ItemTemplate>
 

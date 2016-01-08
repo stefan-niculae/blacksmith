@@ -1,0 +1,37 @@
+FEATURES
+  ? facebook login
+  change favorite category
+  suggest similar links
+
+
+
+DATA CONSTRAINTS ENFORCEMENT
+  validators for submitted links (length, trimming, regex for websites & whitespace/newlines)
+  only allow unique website links (this includes an ajax call to retrieve the already existing names!)
+  comments
+
+
+
+CODE STRUCTURE
+  class for current user & current link
+  class for rights handling
+  template for favoriting
+
+
+
+VISUAL DESIGN
+  center .action-wrapper (without the width: 18% workaround!)
+  ?when clicking a contenteditable, make it as big as the line permits (not just as big as the text)
+  fix footer (not to overlap when there enough content)
+  Make col-*-offset-* work in submitted links (center them horizontally)
+  also offset to the right change pw and logout
+  enforce unique addresses (when inserting check exceptions)
+
+
+
+USER EXPERIENCE
+  refresh favicon & address on the inserting link
+  when esc is pressed while editing a [contenteditable], restore to original and cancel pending upadte
+  undo functionality for links (update pending -> cancel update and updated -> undo update)
+  make 1 page for login & register
+  if there is a timeout for updating the db, don't let the user leave the page

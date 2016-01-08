@@ -8,6 +8,6 @@ namespace Blacksmith
         public IQueryable<Models.Link> GetLinks()
         {
             return ApplicationDbContext.Create().Links;
-        }
+        } 
     }
 }
