@@ -42,29 +42,114 @@ namespace Blacksmith.Models
             {
                 new Link
                 {
-                    Id = 1,
                     Title = "Google",
                     Address = "google.dk",
-                    Description = "Google Denmark",
-                    Date = DateTime.Now.AddDays(-2),
+                    Description = "Find stuff",
+                    Date = DateTime.Now.AddDays(-1),
                     Submitter = stefan
                 },
                 new Link
                 {
-                    Id = 2,
                     Title = "Amazon",
                     Address = "amazon.it",
-                    Description = "Amazon Italy",
+                    Description = "Buy italian stuff",
+                    Date = DateTime.Now.AddDays(-2),
+                    Submitter = ionut
+                },
+                new Link
+                {
+                    Title = "Ebay",
+                    Address = "ebay.ca",
+                    Description = "Buy canadian stuff",
+                    Date = DateTime.Now.AddDays(-3),
+                    Submitter = stefan
+                },
+                new Link
+                {
+                    Title = "Reddit",
+                    Address = "reddit.com",
+                    Description = "Waste time in a fun way",
+                    Date = DateTime.Now.AddDays(-4),
+                    Submitter = stefan
+                },
+                new Link
+                {
+                    Title = "Facebook",
+                    Address = "facebook.com",
+                    Description = "Largest social networking site",
                     Date = DateTime.Now.AddDays(-5),
                     Submitter = ionut
                 },
                 new Link
                 {
-                    Id = 3,
-                    Title = "Ebay",
-                    Address = "ebay.ca",
-                    Description = "Ebay Canada",
+                    Title = "FB Messenger",
+                    Address = "Messenger.com",
+                    Description = "Just the messenger part of facebook",
+                    Date = DateTime.Now.AddDays(-6),
+                    Submitter = stefan
+                },
+                new Link
+                {
+                    Title = "Youtube",
+                    Address = "youtube.com",
+                    Description = "Most popular video sharing platform",
+                    Date = DateTime.Now.AddDays(-7),
+                    Submitter = ionut
+                },
+                new Link
+                {
+                    Title = "Inbox",
+                    Address = "inbox.google.com",
+                    Description = "Mail management by the Gmail team",
+                    Date = DateTime.Now.AddDays(-8),
+                    Submitter = stefan
+                },
+                new Link
+                {
+                    Title = "Drive",
+                    Address = "drive.google.com",
+                    Description = "Cloud storage from Google",
+                    Date = DateTime.Now.AddDays(-9),
+                    Submitter = stefan
+                },
+                new Link
+                {
+                    Title = "Keep",
+                    Address = "keep.google.com",
+                    Description = "Notes and lists",
                     Date = DateTime.Now.AddDays(-10),
+                    Submitter = stefan
+                },
+                new Link
+                {
+                    Title = "Univeristy of Bucharest",
+                    Address = "fmi.unibuc.ro",
+                    Description = "Math & CS, Bucharest Uni",
+                    Date = DateTime.Now.AddDays(-11),
+                    Submitter = ionut
+                },
+                new Link
+                {
+                    Title = "Github",
+                    Address = "github.com",
+                    Description = "Social coding",
+                    Date = DateTime.Now.AddDays(-12),
+                    Submitter = stefan
+                },
+                new Link
+                {
+                    Title = "Maps",
+                    Address = "maps.google.com",
+                    Description = "Online maps & directions",
+                    Date = DateTime.Now.AddDays(-13),
+                    Submitter = ionut
+                },
+                new Link
+                {
+                    Title = "Calendar",
+                    Address = "calendar.google.com",
+                    Description = "Events & reminders",
+                    Date = DateTime.Now.AddDays(-14),
                     Submitter = stefan
                 },
             };
@@ -75,27 +160,45 @@ namespace Blacksmith.Models
             {
                 new Comment
                 {
-                    Id = 1,
                     Link = links[0],
                     Content = "Best search engine!",
-                    Date = DateTime.Now.AddDays(-1),
+                    Date = DateTime.Now.AddHours(-1),
                     Submitter = stefan
                 },
                 new Comment
                 {
-                    Id = 2,
                     Link = links[0],
                     Content = "Why denmark link though?",
-                    Date = DateTime.Now,
+                    Date = DateTime.Now.AddHours(-2),
                     Submitter = ionut
                 },
                 new Comment
                 {
-                    Id = 3,
+                    Link = links[0],
+                    Content = "Shhh, no-one's gonna notice!",
+                    Date = DateTime.Now.AddHours(-2),
+                    Submitter = stefan
+                },
+                new Comment
+                {
                     Link = links[1],
                     Content = "Amazon rocks!",
-                    Date = DateTime.Now.AddDays(-3),
+                    Date = DateTime.Now.AddHours(-3),
                     Submitter = ionut
+                },
+                new Comment
+                {
+                    Link = links[11],
+                    Content = "Highly recommended skill to have!",
+                    Date = DateTime.Now.AddHours(-4),
+                    Submitter = stefan,
+                },
+                new Comment
+                {
+                    Link = links[11],
+                    Content = "Essential",
+                    Date = DateTime.Now.AddHours(-5),
+                    Submitter = ionut,
                 },
             };
             context.Comments.AddRange(comments);
@@ -104,7 +207,6 @@ namespace Blacksmith.Models
             {
                 new Favorite
                 {
-                    Id = 1,
                     Category = "shopping",
                     Date = DateTime.Now.AddHours(-2),
                     Link = links[1],
@@ -112,7 +214,6 @@ namespace Blacksmith.Models
                 },
                 new Favorite
                 {
-                    Id = 2,
                     Category = "shopping",
                     Date = DateTime.Now.AddHours(-1),
                     Link = links[2],
@@ -120,12 +221,97 @@ namespace Blacksmith.Models
                 },
                 new Favorite
                 {
-                    Id = 3,
                     Category = "deals",
                     Date = DateTime.Now.AddHours(-1),
                     Link = links[1],
                     User = ionut
-                }
+                },
+
+                new Favorite
+                {
+                    Category = "Google",
+                    Date = DateTime.Now.AddHours(-3),
+                    Link = links[0],
+                    User = ionut
+                },
+                new Favorite
+                {
+                    Category = "Google",
+                    Date = DateTime.Now.AddHours(-3),
+                    Link = links[7],
+                    User = ionut
+                },
+                new Favorite
+                {
+                    Category = "Google",
+                    Date = DateTime.Now.AddHours(-3),
+                    Link = links[8],
+                    User = ionut
+                },
+                new Favorite
+                {
+                    Category = "Google",
+                    Date = DateTime.Now.AddHours(-3),
+                    Link = links[9],
+                    User = ionut
+                },
+                new Favorite
+                {
+                    Category = "Google",
+                    Date = DateTime.Now.AddHours(-3),
+                    Link = links[12],
+                    User = ionut
+                },
+                new Favorite
+                {
+                    Category = "Google",
+                    Date = DateTime.Now.AddHours(-3),
+                    Link = links[13],
+                    User = ionut
+                },
+
+                 new Favorite
+                {
+                    Category = "Productivity",
+                    Date = DateTime.Now.AddHours(-3),
+                    Link = links[7],
+                    User = stefan
+                },
+                new Favorite
+                {
+                    Category = "Productivity",
+                    Date = DateTime.Now.AddHours(-3),
+                    Link = links[8],
+                    User = stefan
+                },
+                new Favorite
+                {
+                    Category = "Productivity",
+                    Date = DateTime.Now.AddHours(-3),
+                    Link = links[9],
+                    User = stefan
+                },
+                new Favorite
+                {
+                    Category = "Productivity",
+                    Date = DateTime.Now.AddHours(-3),
+                    Link = links[12],
+                    User = stefan
+                },
+                new Favorite
+                {
+                    Category = "Productivity",
+                    Date = DateTime.Now.AddHours(-3),
+                    Link = links[13],
+                    User = stefan
+                },
+                new Favorite
+                {
+                    Category = "Productivity",
+                    Date = DateTime.Now.AddHours(-3),
+                    Link = links[11],
+                    User = stefan
+                },
             };
             context.Favorites.AddRange(favorites);
         }
