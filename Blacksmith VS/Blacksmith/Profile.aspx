@@ -67,7 +67,7 @@
   
 
   <section id="submitted" class="col-md-offset-3 col-md-6">
-    <h2><span class="glyphicon glyphicon-link" aria-hidden="true"></span> Submitted Links</h2>
+    <h2><span class="glyphicon glyphicon-link" aria-hidden="true"></span> Submissions</h2>
     
     <asp:ListView ID="submissions" runat="server"
       SelectMethod="SubmittedLinks"
@@ -126,6 +126,22 @@
         </ItemTemplate>
     </asp:ListView>
     
+  </section>
+  
+  
+
+  <section id="favorites">
+    <h2><i class="fa fa-star"></i> Favorites</h2>
+    <asp:ListView runat="server" ID="FavoritesList"
+      ItemType="Blacksmith.Models.Favorite">
+      <ItemTemplate>
+      <div class="favorite">
+        <a href="Link?addr=<%# Item.Link.Address %>"><%# Item.Link.Address %></a>
+        in
+        <%# Item.Category ?? "no category" %>
+      </div>
+      </ItemTemplate>
+    </asp:ListView>
   </section>
   
   <% } %>

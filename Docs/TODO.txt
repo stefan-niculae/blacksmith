@@ -1,9 +1,6 @@
 FEATURES
   paginate front page link lists
-  change favorite category
-  show favorites list
   suggest similar links
-  ? facebook login
 
 
 
@@ -40,6 +37,7 @@ USER EXPERIENCE
   if there is a timeout for updating the db, don't let the user leave the page
   'popup' for selecting category (with typeahead) when favoriting a link
   confirmation on deletion of link from its details page
+  ? facebook login
 
 
 
