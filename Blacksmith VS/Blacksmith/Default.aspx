@@ -18,10 +18,21 @@
 
     <section id="popular" class="col-md-6">
       <h3>Popular Links</h3>
-      <asp:ListView runat="server"
+      <asp:ListView runat="server" ID="PopularLinksList"
         SelectMethod="PopularLinks"
         ItemType="Blacksmith.Models.Link">
         
+        <LayoutTemplate>
+          <asp:PlaceHolder runat="server" ID="itemPlaceholder"></asp:PlaceHolder>
+          Page
+          <asp:DataPager runat="server" PagedControlID="PopularLinksList"
+            PageSize="10">
+            <Fields>
+              <asp:NumericPagerField ButtonType="Link"/>
+            </Fields>
+          </asp:DataPager>
+        </LayoutTemplate>
+
         <ItemTemplate>
           <article>
             <img src="<%# Item.Favicon %>" alt="Favicon"/>
@@ -61,6 +72,17 @@
         <asp:ListView ID="RecentLinksView" runat="server"
           SelectMethod="RecentLinks"
           ItemType="Blacksmith.Models.Link">
+          
+          <LayoutTemplate>
+          <asp:PlaceHolder runat="server" ID="itemPlaceholder"></asp:PlaceHolder>
+          Page
+          <asp:DataPager runat="server" PagedControlID="RecentLinksView"
+            PageSize="10">
+            <Fields>
+              <asp:NumericPagerField ButtonType="Link"/>
+            </Fields>
+          </asp:DataPager>
+        </LayoutTemplate>
 
           <ItemTemplate>
             <article>

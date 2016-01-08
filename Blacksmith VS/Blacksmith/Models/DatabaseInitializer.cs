@@ -124,25 +124,25 @@ namespace Blacksmith.Models
                 },
                 new Link
                 {
-                    Title = "Inbox",
-                    Address = "inbox.google.com",
-                    Description = "Mail management by the Gmail team",
+                    Title = "Slack",
+                    Address = "slack.com",
+                    Description = "The javascript of team communication",
                     Date = DateTime.Now.AddDays(-8),
                     Submitter = stefan
                 },
                 new Link
                 {
-                    Title = "Drive",
-                    Address = "drive.google.com",
-                    Description = "Cloud storage from Google",
+                    Title = "Twitter",
+                    Address = "twitter.com",
+                    Description = "Broadcast short messages",
                     Date = DateTime.Now.AddDays(-9),
                     Submitter = stefan
                 },
                 new Link
                 {
-                    Title = "Keep",
-                    Address = "keep.google.com",
-                    Description = "Notes and lists",
+                    Title = "Instagram",
+                    Address = "instagram.com",
+                    Description = "I don't get it eihter",
                     Date = DateTime.Now.AddDays(-10),
                     Submitter = stefan
                 },
@@ -172,9 +172,9 @@ namespace Blacksmith.Models
                 },
                 new Link
                 {
-                    Title = "Calendar",
-                    Address = "calendar.google.com",
-                    Description = "Events & reminders",
+                    Title = "Delicious",
+                    Address = "delicio.us",
+                    Description = "Social bookmarks aswell",
                     Date = DateTime.Now.AddDays(-14),
                     Submitter = stefan
                 },
@@ -264,35 +264,7 @@ namespace Blacksmith.Models
                 {
                     Category = "Google",
                     Date = DateTime.Now.AddHours(-3),
-                    Link = links[7],
-                    User = ionut
-                },
-                new Favorite
-                {
-                    Category = "Google",
-                    Date = DateTime.Now.AddHours(-3),
-                    Link = links[8],
-                    User = ionut
-                },
-                new Favorite
-                {
-                    Category = "Google",
-                    Date = DateTime.Now.AddHours(-3),
-                    Link = links[9],
-                    User = ionut
-                },
-                new Favorite
-                {
-                    Category = "Google",
-                    Date = DateTime.Now.AddHours(-3),
                     Link = links[12],
-                    User = ionut
-                },
-                new Favorite
-                {
-                    Category = "Google",
-                    Date = DateTime.Now.AddHours(-3),
-                    Link = links[13],
                     User = ionut
                 },
 
@@ -307,28 +279,7 @@ namespace Blacksmith.Models
                 {
                     Category = "Productivity",
                     Date = DateTime.Now.AddHours(-3),
-                    Link = links[8],
-                    User = stefan
-                },
-                new Favorite
-                {
-                    Category = "Productivity",
-                    Date = DateTime.Now.AddHours(-3),
-                    Link = links[9],
-                    User = stefan
-                },
-                new Favorite
-                {
-                    Category = "Productivity",
-                    Date = DateTime.Now.AddHours(-3),
                     Link = links[12],
-                    User = stefan
-                },
-                new Favorite
-                {
-                    Category = "Productivity",
-                    Date = DateTime.Now.AddHours(-3),
-                    Link = links[13],
                     User = stefan
                 },
                 new Favorite

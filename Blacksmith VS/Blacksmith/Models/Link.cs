@@ -15,7 +15,7 @@ namespace Blacksmith.Models
 
         [Required, StringLength(100)]
         public string Address { get; set; }
-
+        
         [StringLength(1000), DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
@@ -28,6 +28,8 @@ namespace Blacksmith.Models
         public virtual ICollection<Comment> Comments { get; set; }
 
         public virtual ICollection<Favorite> Favorites { get; set; }
+
+        public virtual ICollection<Link> Similars { get; set; }
 
         // Use services to provide favicon and thumbnail
         [NotMapped]

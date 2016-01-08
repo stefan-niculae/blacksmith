@@ -12,6 +12,11 @@ namespace Blacksmith
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+           LogoutResidualUser();
+        }
+
+        private void LogoutResidualUser()
+        {
             // Log out the signed user if their id is not found in the database
             // protection for residual logged users from previous databases
             string loggedId = User.Identity.GetUserId();
@@ -37,6 +42,8 @@ namespace Blacksmith
         private HashSet<int> _favoriteIds;
         public bool HasFavorited(int linkId)
         {
+            LogoutResidualUser();
+
             // All links are not-favorited by unauthenticated users
             if (!User.Identity.IsAuthenticated)
                 return false;
