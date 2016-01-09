@@ -74,6 +74,7 @@
     visibility: hidden;
   }
 
+.similar-link:hover,
 .comment:hover,
 .big-link:hover {
   .delete-button, .edit-button {
@@ -84,10 +85,10 @@
 
 footer {
   // TODO reenable when overlapping issue is fixed
-  display: none; 
+  display: none;
 
-  position: fixed;
-  bottom: 1%;
+  //position: fixed;
+  //bottom: 1%;
   text-align: center;
   width: 100%;
 }

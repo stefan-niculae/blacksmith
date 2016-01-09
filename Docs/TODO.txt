@@ -1,5 +1,4 @@
 FEATURES
-  paginate front page link lists
   suggest similar links
 
 

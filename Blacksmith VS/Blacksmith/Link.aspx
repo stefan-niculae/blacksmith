@@ -7,6 +7,7 @@
   <script src="/Scripts/UpdateDeleteLink.min.js"></script>
   <script src="/Scripts/AddDeleteComment.min.js"></script>
   <script src="/Scripts/ToggleFavorites.min.js"></script>
+  <script src="/Scripts/AddSimilar.min.js"></script>
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -157,17 +158,49 @@
   <section id="similars">
     <h2>Similar Links</h2>
     
+    <div id="submitted-similars">
     <asp:ListView runat="server" ID="SimilarsList"
       ItemType="Blacksmith.Models.Link">
       <ItemTemplate>
-        <span class="similar"><%# Item.Address %></span>
-        <br/>
+      <div class="similar-link">
+        <span class="address"><%# Item.Address %></span>
+        <% if (canDelete) { %> 
+          <button class="btn btn-danger btn-xs delete-button"
+            onclick="deleteSimilar(); return false;">
+            <i class="fa fa-trash"></i>
+          </button>
+        <% } %>
+      </div>
       </ItemTemplate>
       <EmptyDataTemplate>
+      <div>
         <span class="empty-data-text">This link has no similar pages submitted</span>
+      </div>
       </EmptyDataTemplate>
     </asp:ListView>
-
+    </div>
+    
+    <% if (User.Identity.IsAuthenticated) { %>
+    <asp:ListView runat="server" ID="SubmittedLinksList"
+      ItemType="Blacksmith.Models.Link">
+      <LayoutTemplate>
+      <div class="form-inline" id="new-similar">
+        <select class="form-control">
+          <asp:PlaceHolder runat="server" ID="itemPlaceholder"></asp:PlaceHolder>
+        </select>
+        <button class="btn btn-success btn-sm" onclick="submitSimilar(); return false;">
+          Suggest
+        </button>
+      </div>
+      </LayoutTemplate>
+      
+      <ItemTemplate>
+        <option><%# Item.Address %></option>
+      </ItemTemplate>
+      
+    </asp:ListView>
+    <% } %>
+    
   </section>
 
   <% } %>

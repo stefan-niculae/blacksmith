@@ -203,6 +203,12 @@
     <Content Include="Scripts\AddLink.min.js">
       <DependentUpon>AddLink.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\AddSimilar.js">
+      <DependentUpon>AddSimilar.coffee</DependentUpon>
+    </Content>
+    <Content Include="Scripts\AddSimilar.min.js">
+      <DependentUpon>AddSimilar.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\ConvertDates.coffee" />
@@ -222,6 +228,10 @@
     </Content>
     <Content Include="Scripts\ConvertDates.js.map">
       <DependentUpon>ConvertDates.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\AddSimilar.coffee" />
+    <Content Include="Scripts\AddSimilar.js.map">
+      <DependentUpon>AddSimilar.js</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\datatables.min.js" />

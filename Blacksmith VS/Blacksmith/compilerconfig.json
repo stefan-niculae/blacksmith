@@ -42,5 +42,9 @@
   {
     "outputFile": "Scripts/ConvertDates.js",
     "inputFile": "Scripts/ConvertDates.coffee"
+  },
+  {
+    "outputFile": "Scripts/AddSimilar.js",
+    "inputFile": "Scripts/AddSimilar.coffee"
   }
 ]
