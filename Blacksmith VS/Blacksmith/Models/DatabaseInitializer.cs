@@ -109,7 +109,7 @@ namespace Blacksmith.Models
                 new Link
                 {
                     Title = "FB Messenger",
-                    Address = "Messenger.com",
+                    Address = "messenger.com",
                     Description = "Just the messenger part of facebook",
                     Date = DateTime.Now.AddDays(-6),
                     Submitter = stefan
@@ -179,23 +179,30 @@ namespace Blacksmith.Models
                     Submitter = stefan
                 },
             };
+
+
             for (int i = 0; i < links.Count; i++)
                 links[i] = context.Links.Add(links[i]);
-            
+
+            links[4].Similars.Add(links[9]);
+            links[9].Similars.Add(links[4]);
+            links[1].Similars.Add(links[2]);
+            links[2].Similars.Add(links[1]);
+
             var comments = new List<Comment>
             {
                 new Comment
                 {
                     Link = links[0],
                     Content = "Best search engine!",
-                    Date = DateTime.Now.AddHours(-1),
+                    Date = DateTime.Now.AddHours(-4),
                     Submitter = stefan
                 },
                 new Comment
                 {
                     Link = links[0],
                     Content = "Why denmark link though?",
-                    Date = DateTime.Now.AddHours(-2),
+                    Date = DateTime.Now.AddHours(-3),
                     Submitter = ionut
                 },
                 new Comment

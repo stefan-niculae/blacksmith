@@ -26,15 +26,12 @@ namespace Blacksmith
             FillInfo();
             HandleRights();
             ShowMessage();
-
-            if (User.Identity.IsAuthenticated)
-            {
-                FavoritesList.DataSource = ApplicationDbContext.Create()
-                    .Favorites.Where(f => f.User.UserName == Username)
-                    .ToList();
-                FavoritesList.DataBind();
-            }
-
+            
+            FavoritesList.DataSource = ApplicationDbContext.Create()
+                .Favorites.Where(f => f.User.UserName == Username)
+                .ToList();
+            FavoritesList.DataBind();
+            
             HandleAjax();
         }
 
