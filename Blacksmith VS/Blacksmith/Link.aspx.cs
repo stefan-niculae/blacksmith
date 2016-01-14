@@ -93,7 +93,7 @@ namespace Blacksmith
                 if (CurrentUser != null)
                 {
                     SubmittedLinksList.DataSource = _db.Links
-                        .Where(l => l.Submitter.Id == CurrentUser.Id)
+                        .Where(l => l.Submitter.Id == CurrentUser.Id && l.Id != CurrentLink.Id)
                         .ToList();
                     SubmittedLinksList.DataBind();
                 }

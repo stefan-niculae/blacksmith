@@ -82,15 +82,34 @@
   }
 }
 
+$footer-height: 75px;
+$nav-height: 52px;
+
+html, body { height: 100%; margin:0; padding: 0;}
+form { height: 100% }
+
+.navbar {
+  box-sizing: border-box;
+  height: $nav-height;
+}
+
+.container.body-content {
+  position: relative;
+  min-height: 100%;
+  padding-top: $nav-height;
+  box-sizing: border-box;
+}
+
+.mainContent {
+  margin-bottom: $footer-height;  
+}
 
 footer {
-  // TODO reenable when overlapping issue is fixed
-  display: none;
-
-  //position: fixed;
-  //bottom: 1%;
   text-align: center;
   width: 100%;
+  position: absolute;
+  bottom: 0;
+  height: $footer-height;
 }
 
 
@@ -106,3 +125,21 @@ footer {
     }  
   }
  }
+
+#links {
+  article {
+    background: rgba(0, 0, 0, 0.06);
+    border-radius: 3px;
+    padding: 7px 8px;
+    width: 300px;
+    margin: 0 0 10px 0;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    .favorite-button, .date-container {
+      float: right;
+    }
+  }
+}

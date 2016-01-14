@@ -95,7 +95,11 @@
               <a href="Profile?user=<%# Item.Submitter.UserName %>">
                 <%# Item.Submitter.UserName %> 
               </a>
-              <i class="fa fa-clock-o"></i> <span class="date short-diff" title="Date submitted: <%# Item.Date %>"><%# Item.Date %></span>
+              <div class="date-container">
+                <i class="fa fa-clock-o"></i> 
+                <span class="date short-diff" title="Date submitted: <%# Item.Date %>"><%# Item.Date %></span>
+              </div>
+              
               <%--<img src="<%#: Item.Thumbnail %>" alt="Thumbnail"/>--%>
               <br />
             </article>

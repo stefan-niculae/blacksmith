@@ -1,5 +1,4 @@
 FEATURES
-  suggest similar links
 
 
 
@@ -42,3 +41,4 @@ USER EXPERIENCE
 
 BUGS
   the updatedeletelink script points to window.location.href when sending the db update ajax instead of a page where we are sure handling exists
+  adding a link when there are no links doesn't update it visually
